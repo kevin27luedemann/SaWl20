@@ -121,6 +121,9 @@
     <Compile Include="ADC.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="ausgabe.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="definitionen.h">
       <SubType>compile</SubType>
     </Compile>

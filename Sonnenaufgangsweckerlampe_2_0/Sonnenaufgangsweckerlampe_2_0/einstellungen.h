@@ -16,8 +16,11 @@ void zeitsetzen(){
 	WochenTag=6;
 	WStunden=5;
 	WMinuten=35;
-	einsweck();
-	einstzeit();
+//	einsweck();
+//	einstzeit();
+	einst(4);
+	einst(1);
+	einst(0);
 }
 
 void init(){
@@ -197,7 +200,9 @@ uint8_t einst(uint8_t posit){
 			}
 			if(Sekunden!=sektemp){
 				zeit();
-				ausgabe(0);
+				//ausgabe(0);
+				//Es muss eine richtge Ausgabe speziell fuer dieses Einstellung geschrieben werden
+				//besonders wichtig ist, dass die alte Ausgaba ersetzt werden muss
 			}
 			switch (temp){
 			case 0:
@@ -222,7 +227,7 @@ uint8_t einst(uint8_t posit){
 			}
 			if(Sekunden!=sektemp){
 				zeit();
-				ausgabe(0);
+				//ausgabe(0);
 			}
 			switch (temp){
 			case 0:
@@ -247,7 +252,7 @@ uint8_t einst(uint8_t posit){
 		{
 			if(Sekunden!=sektemp){
 				zeit();
-				ausgabe(0);
+				//ausgabe(0);
 			}
 			if(debounce(&PIND,2)){
 				erhoehen(&sekoffset,10);	
@@ -262,9 +267,33 @@ uint8_t einst(uint8_t posit){
 		{
 			if(Sekunden!=sektemp){
 				zeit();
-				ausgabe(0);
+				//ausgabe(0);
 			}
 			erhoehen(&tempoffset,10);
+		}
+		return 0;
+		break;
+	case 4: //Wecker einstellen
+		temp = 0;
+		while (temp<2)
+		{
+			if (Sekunden!=sektemp)
+			{
+				zeit();
+			}
+			if(debounce(&PIND,2));{
+				temp++;
+			}
+			switch (temp)
+			{
+				case 0:
+					erhoehen(&WStunden,60);
+					break;
+				case 1:
+					erhoehen(&WMinuten,24);
+					break;
+			}
+			
 		}
 		return 0;
 		break;

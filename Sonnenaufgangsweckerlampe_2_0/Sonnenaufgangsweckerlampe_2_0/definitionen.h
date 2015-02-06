@@ -51,6 +51,9 @@ void init();
 void zeitsetzen();
 uint16_t ADC_Read( uint8_t channel );
 uint16_t ADC_Read_Avg( uint8_t channel, uint8_t nsamples );
+uint8_t einst(uint8_t posit);
+void erhoehen(uint8_t *var, uint8_t obergrenze);
+void wtag(uint8_t numm);
 
 
 #endif /* DEFINITIONEN_H_ */
