@@ -52,8 +52,11 @@ void zeitsetzen();
 uint16_t ADC_Read( uint8_t channel );
 uint16_t ADC_Read_Avg( uint8_t channel, uint8_t nsamples );
 uint8_t einst(uint8_t posit);
-void erhoehen(uint8_t *var, uint8_t obergrenze);
+void erhoehen(uint8_t *var, uint8_t obergrenze, uint8_t pos);
 void wtag(uint8_t numm);
+void aus(uint8_t zeile, uint8_t pos);
+void Kalenderaus();
+void zeitaus(uint8_t pos);
 
 
 #endif /* DEFINITIONEN_H_ */

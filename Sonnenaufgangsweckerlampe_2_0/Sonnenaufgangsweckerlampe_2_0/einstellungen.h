@@ -26,9 +26,10 @@ void zeitsetzen(){
 void init(){
 	//LCD einstellen und erste Ausgabe
 	lcd_init();
-	lcd_string("Wecker");
-	lcd_setcursor( 0, 2 );
-	lcd_string("Start!");
+	aus(1,4);
+	//lcd_string("Wecker");
+	//lcd_setcursor( 0, 2 );
+	//lcd_string("Start!");
 	_delay_ms(1500);
 	lcd_clear();
 	
@@ -170,13 +171,14 @@ void einsweck(){
 
 //Funktion um eine Variable, die mit Adreesse uebergeben wird zu erhoehen
 //erhoeht wird erst, wenn die richtige Taste gedrueckt wird
-void erhoehen(uint8_t *var, uint8_t obergrenze){
+void erhoehen(uint8_t *var, uint8_t obergrenze, uint8_t pos){
 	if(debounce(&PIND,3))
 	{
 		*var+=1;
 		if(*var>=obergrenze){
 			*var=0;
 		}
+		
 	}
 }
 
@@ -254,8 +256,13 @@ uint8_t einst(uint8_t posit){
 				zeit();
 				//ausgabe(0);
 			}
-			if(debounce(&PIND,2)){
-				erhoehen(&sekoffset,10);	
+			if(debounce(&PIND,3)){
+				sekoffset++;
+				if (sekoffset==10)
+				{
+					sekoffset=0;
+				}
+					
 			}
 		}
 		return 0;

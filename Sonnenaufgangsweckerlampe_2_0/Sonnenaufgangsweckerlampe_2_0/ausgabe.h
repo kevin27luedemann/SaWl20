@@ -89,5 +89,110 @@ void wtag(uint8_t numm){
 	}
 }
 
+void aus(uint8_t zeile, uint8_t pos){
+	
+	switch (zeile)
+	{
+		case 1:
+			lcd_clear();
+			lcd_home();
+			switch (pos)
+			{
+				case 0:
+					//Alles ohne Sekunden
+					Kalenderaus();
+					lcd_string(" ");
+					zeitaus(0);
+					
+					break;
+					
+				case 1:
+					//Alles
+					Kalenderaus();
+					lcd_string(" ");
+					zeitaus(1);
+					
+					break;
+				case 2:
+					//Nur Kalender
+					Kalenderaus();
+					
+					break;
+				case 3:
+					//Nur Zeit ohne Sekunden
+					zeitaus(0);
+					
+					break;
+					
+				case 4:
+					lcd_string("Guten Tag");
+					lcd_setcursor(0,2);
+					lcd_string("Wecker einstellen");
+			}
+			break;
+			
+		case 2;
+			lcd_setcursor(0,2);
+				switch (pos)
+				{
+					case 0:
+						//blanko
+					
+						break;
+						
+					case 1:
+						//Temperatur
+						dtostrf(tempera,2,2,Buffer);
+						lcd_string(Buffer);
+						lcd_data(0b11011111); //°
+						lcd_data(0b01000011); //C
+						
+						break;
+				}
+			break;
+	}
+}
+
+void Kalenderaus(){
+	//Wochentag noch nach der alten Methode
+	wtag(WochenTag);
+	
+	//Kalender als normale Tage, an sich nicht implementiert
+	itoa(Tag,Buffer,10);
+	lcd_string(Buffer);
+	lcd_string(".");
+	itoa(Monat,Buffer,10);
+	lcd_string(Buffer);
+	lcd_string(".");
+	itoa(Jahr,Buffer,10);
+	lcd_string(Buffer);
+}
+
+void zeitaus(uint8_t pos){
+	switch (pos)
+	{
+		case 0;
+			itoa( Stunden, Buffer, 10 );
+			lcd_string(Buffer);
+			lcd_string(":");
+			itoa( Minuten, Buffer, 10);
+			lcd_string(Buffer);
+			
+			break;
+		
+		case 1:
+			itoa( Stunden, Buffer, 10 );
+			lcd_string(Buffer);
+			lcd_string(":");
+			itoa( Minuten, Buffer, 10);
+			lcd_string(Buffer);
+			lcd_string(":");
+			itoa(Sekunden, Buffer,10);
+			lcd_string(Buffer);
+			
+			break;
+	}
+}
+
 
 #endif /* AUSGABE_H_ */
