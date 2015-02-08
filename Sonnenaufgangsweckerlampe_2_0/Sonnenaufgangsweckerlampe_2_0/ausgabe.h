@@ -10,7 +10,6 @@
 #define AUSGABE_H_
 
 void ausgabe(uint8_t pos){
-	char Buffer[20];
 	lcd_clear();
 	lcd_home();
 	if (pos==0 || pos==1)
@@ -128,10 +127,21 @@ void aus(uint8_t zeile, uint8_t pos){
 					lcd_string("Guten Tag");
 					lcd_setcursor(0,2);
 					lcd_string("Wecker einstellen");
+					
+					break;
+				
+				case 5:
+					itoa(WStunden,Buffer,10);
+					lcd_string(Buffer);
+					lcd_string(":");
+					itoa(WMinuten,Buffer,10);
+					lcd_string(Buffer);
+					
+					break;
 			}
 			break;
 			
-		case 2;
+		case 2:
 			lcd_setcursor(0,2);
 				switch (pos)
 				{
@@ -171,7 +181,7 @@ void Kalenderaus(){
 void zeitaus(uint8_t pos){
 	switch (pos)
 	{
-		case 0;
+		case 0:
 			itoa( Stunden, Buffer, 10 );
 			lcd_string(Buffer);
 			lcd_string(":");

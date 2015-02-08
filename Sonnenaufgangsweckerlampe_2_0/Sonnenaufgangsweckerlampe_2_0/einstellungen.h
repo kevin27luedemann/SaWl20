@@ -171,13 +171,17 @@ void einsweck(){
 
 //Funktion um eine Variable, die mit Adreesse uebergeben wird zu erhoehen
 //erhoeht wird erst, wenn die richtige Taste gedrueckt wird
-void erhoehen(uint8_t *var, uint8_t obergrenze, uint8_t pos){
+void erhoehen(uint8_t *var, uint8_t obergrenze, uint8_t pos, const char *data){
 	if(debounce(&PIND,3))
 	{
 		*var+=1;
 		if(*var>=obergrenze){
 			*var=0;
 		}
+		aus(1,pos);
+		aus(2,0);
+		while( *data != '\0' )
+		lcd_data( *data++ );
 		
 	}
 }
@@ -208,15 +212,16 @@ uint8_t einst(uint8_t posit){
 			}
 			switch (temp){
 			case 0:
-				erhoehen(&Stunden,60);
+				erhoehen(&Stunden,60,3,NAME(Stunden));
 				break;
 			case 1:
-				erhoehen(&Minuten,60);
+				erhoehen(&Minuten,60,3,NAME(Minuten));
 				break;
 			default:
 				break;
 			}
 		}
+		Sekunden=0;
 		return 0;
 		break;
 	case 1:
@@ -233,13 +238,13 @@ uint8_t einst(uint8_t posit){
 			}
 			switch (temp){
 			case 0:
-				erhoehen(&Tag,10);
+				erhoehen(&Tag,10,2,NAME(Tag));
 				break;
 			case 1:
-				erhoehen(&Monat,12);
+				erhoehen(&Monat,12,2,NAME(Tag));
 				break;
 			case 2:
-				erhoehen(&Jahr,30);
+				erhoehen(&Jahr,30,2,NAME(Jahr));
 				break;
 			default:
 				break;
@@ -276,7 +281,7 @@ uint8_t einst(uint8_t posit){
 				zeit();
 				//ausgabe(0);
 			}
-			erhoehen(&tempoffset,10);
+			erhoehen(&tempoffset,10,3,NAME(tempoffset));
 		}
 		return 0;
 		break;
@@ -294,10 +299,10 @@ uint8_t einst(uint8_t posit){
 			switch (temp)
 			{
 				case 0:
-					erhoehen(&WStunden,60);
+					erhoehen(&WStunden,60,5,NAME(WStunden));
 					break;
 				case 1:
-					erhoehen(&WMinuten,24);
+					erhoehen(&WMinuten,24,5,NAME(WMinuten));
 					break;
 			}
 			
