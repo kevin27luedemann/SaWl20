@@ -99,7 +99,7 @@ void aus(uint8_t zeile, uint8_t pos){
 			{
 				case 0:
 					//Alles ohne Sekunden
-					Kalenderaus();
+					Kalenderaus(0);
 					lcd_string(" ");
 					zeitaus(0);
 					
@@ -107,19 +107,20 @@ void aus(uint8_t zeile, uint8_t pos){
 					
 				case 1:
 					//Alles
-					Kalenderaus();
+					Kalenderaus(0);
 					lcd_string(" ");
 					zeitaus(1);
 					
 					break;
 				case 2:
 					//Nur Kalender
-					Kalenderaus();
+					Kalenderaus(0);
 					
 					break;
 				case 3:
-					//Nur Zeit ohne Sekunden
-					zeitaus(0);
+					//Nur Zeit ohne Sekunden mit WDAY
+					Kalenderaus(1);
+					zeitaus(1);
 					
 					break;
 					
@@ -131,6 +132,8 @@ void aus(uint8_t zeile, uint8_t pos){
 					break;
 				
 				case 5:
+					//Wecker
+					lcd_string("Weckzeit: ");
 					itoa(WStunden,Buffer,10);
 					lcd_string(Buffer);
 					lcd_string(":");
@@ -163,19 +166,33 @@ void aus(uint8_t zeile, uint8_t pos){
 	}
 }
 
-void Kalenderaus(){
-	//Wochentag noch nach der alten Methode
-	wtag(WochenTag);
+void Kalenderaus(uint8_t pos){
+	switch (pos)
+	{
+		case 0:
+			//alles
+			//Wochentag noch nach der alten Methode
+			wtag(WochenTag);
+			
+			//Kalender als normale Tage, an sich nicht implementiert
+			itoa(Tag,Buffer,10);
+			lcd_string(Buffer);
+			lcd_string(".");
+			itoa(Monat,Buffer,10);
+			lcd_string(Buffer);
+			lcd_string(".");
+			itoa(Jahr,Buffer,10);
+			lcd_string(Buffer);
+			
+			break;
+		
+		case 1:
+			//Nur der Wochentag
+			wtag(WochenTag);
+		
+			break;
+	}
 	
-	//Kalender als normale Tage, an sich nicht implementiert
-	itoa(Tag,Buffer,10);
-	lcd_string(Buffer);
-	lcd_string(".");
-	itoa(Monat,Buffer,10);
-	lcd_string(Buffer);
-	lcd_string(".");
-	itoa(Jahr,Buffer,10);
-	lcd_string(Buffer);
 }
 
 void zeitaus(uint8_t pos){

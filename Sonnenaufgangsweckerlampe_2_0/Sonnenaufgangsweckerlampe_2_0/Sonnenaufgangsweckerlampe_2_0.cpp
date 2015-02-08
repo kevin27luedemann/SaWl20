@@ -21,7 +21,8 @@ int main(void)
 		if (Sekunden!=sektemp)
 		{
 			zeit();
-			aus(1,0);
+			aus(1,3);
+			aus(2,1);
 			//ausgabe(1);
 		}
 		if(debounce(&PIND,2))

@@ -12,15 +12,16 @@
 void zeitsetzen(){
 	Minuten = 34;
 	Stunden	= 5;
-	Sekunden = 50;
+	Sekunden = 0;
 	WochenTag=6;
 	WStunden=5;
 	WMinuten=35;
 //	einsweck();
 //	einstzeit();
 	einst(4);
-	einst(1);
+//	einst(1); //Noch keinen Kalender, da er in den Einstellungen zu komplex ist
 	einst(0);
+	sekoffset=1;
 }
 
 void init(){
@@ -71,22 +72,26 @@ void init(){
 }
 
 void einstzeit(){
-	ausgabe(0);
+	aus(1,0);
+	aus(2,0);
 	lcd_string(NAME(WochenTag));
 	while(!debounce(&PIND,3)){
-		if (debounce(&PIND,2))
+		/*if (debounce(&PIND,2))
 		{
 			WochenTag++;
 			if (WochenTag==7)
 			{
 				WochenTag=0;
 			}
-			ausgabe(0);
+			aus(1,0);
+			aus(2,0);
 			lcd_string(NAME(WochenTag));
-		}
+		}*/
+		erhoehen(&WochenTag,7,0,NAME(WochenTag));
 		
 	}
-	ausgabe(0);
+	aus(1,0);
+	aus(2,0);
 	lcd_string(NAME(Stunden));
 	while(!debounce(&PIND,3)){
 		if (debounce(&PIND,2))
@@ -96,12 +101,14 @@ void einstzeit(){
 			{
 				Stunden=0;
 			}
-			ausgabe(0);
+			aus(1,0);
+			aus(2,0);
 			lcd_string(NAME(Stunden));
 		}
 		
 	}
-	ausgabe(0);
+	aus(1,0);
+	aus(2,0);
 	lcd_string(NAME(Minuten));
 	while(!debounce(&PIND,3)){
 		if (debounce(&PIND,2))
@@ -111,12 +118,14 @@ void einstzeit(){
 			{
 				Minuten=0;
 			}
-			ausgabe(0);
+			aus(1,0);
+			aus(2,0);
 			lcd_string(NAME(Minuten));
 		}
 		
 	}
-	ausgabe(0);
+	aus(1,0);
+	aus(2,0);
 	lcd_string(NAME(Sekunden));
 	while(!debounce(&PIND,3)){
 		if (debounce(&PIND,2))
@@ -126,7 +135,8 @@ void einstzeit(){
 			{
 				Sekunden=0;
 			}
-			ausgabe(0);
+			aus(1,0);
+			aus(2,0);
 			lcd_string(NAME(Sekunden));
 		}
 		
@@ -136,7 +146,8 @@ void einstzeit(){
 void einsweck(){
 	lcd_clear();
 	lcd_home();
-	ausgabe(2);
+	aus(1,5);
+	aus(2,0);
 	lcd_string(NAME(WStunden));
 	while(!debounce(&PIND,3)){
 		if (debounce(&PIND,2))
@@ -146,12 +157,14 @@ void einsweck(){
 			{
 				WStunden=0;
 			}
-			ausgabe(2);
+			aus(1,5);
+			aus(2,0);
 			lcd_string(NAME(WStunden));
 		}
 	}
 	
-	ausgabe(2);
+	aus(1,5);
+	aus(2,0);
 	lcd_string(NAME(WMinuten));
 	while(!debounce(&PIND,3)){
 		if (debounce(&PIND,2))
@@ -161,7 +174,8 @@ void einsweck(){
 			{
 				WMinuten=0;
 			}
-			ausgabe(2);
+			aus(1,5);
+			aus(2,0);
 			lcd_string(NAME(WMinuten));
 		}
 		
@@ -172,9 +186,9 @@ void einsweck(){
 //Funktion um eine Variable, die mit Adreesse uebergeben wird zu erhoehen
 //erhoeht wird erst, wenn die richtige Taste gedrueckt wird
 void erhoehen(uint8_t *var, uint8_t obergrenze, uint8_t pos, const char *data){
-	if(debounce(&PIND,3))
+	if(debounce(&PIND,2))
 	{
-		*var+=1;
+		*var +=1 ;
 		if(*var>=obergrenze){
 			*var=0;
 		}
@@ -193,29 +207,39 @@ void erhoehen(uint8_t *var, uint8_t obergrenze, uint8_t pos, const char *data){
 uint8_t einst(uint8_t posit){
 	uint8_t temp=0;
 	//abfrage wass eingestellt werden soll
-	switch (posit){
+	switch (posit)
+	{
 	case 0:
 		//Einstellen Zeit
 		//alles einstellen bis auf Sekunden
 		//diese werden auf 0 gesetzt
-	
-		while(temp<3);
+		aus(1,3);
+		while(temp<3)
 		{
-			if(debounce(&PIND,2));{
+			if(debounce(&PIND,3))
+			{
 				temp++;
+				lcd_clear();
+				aus(1,3);
+				aus(2,0);
 			}
-			if(Sekunden!=sektemp){
+			/*if(Sekunden!=sektemp){
 				zeit();
 				//ausgabe(0);
 				//Es muss eine richtge Ausgabe speziell fuer dieses Einstellung geschrieben werden
 				//besonders wichtig ist, dass die alte Ausgaba ersetzt werden muss
-			}
-			switch (temp){
+			}*/
+			switch (temp)
+			{
 			case 0:
 				erhoehen(&Stunden,60,3,NAME(Stunden));
 				break;
 			case 1:
 				erhoehen(&Minuten,60,3,NAME(Minuten));
+				break;
+			case 2:
+				//nur jetzt WochenTag
+				erhoehen(&WochenTag,7,3,NAME(WochenTag));
 				break;
 			default:
 				break;
@@ -227,24 +251,27 @@ uint8_t einst(uint8_t posit){
 	case 1:
 		//Einstellen der Tage
 		temp = 0;
-		while(temp< 3);
+		aus(1,0);
+		while(temp< 3)
 		{
-			if(debounce(&PIND,2));{
+			if(debounce(&PIND,3))
+			{
 				temp++;
+				aus(1,0);
+				aus(2,0);
 			}
 			if(Sekunden!=sektemp){
 				zeit();
-				//ausgabe(0);
 			}
 			switch (temp){
 			case 0:
-				erhoehen(&Tag,10,2,NAME(Tag));
+				erhoehen(&Tag,30,0,NAME(Tag));
 				break;
 			case 1:
-				erhoehen(&Monat,12,2,NAME(Tag));
+				erhoehen(&Monat,12,0,NAME(Monat));
 				break;
 			case 2:
-				erhoehen(&Jahr,30,2,NAME(Jahr));
+				erhoehen(&Jahr,30,0,NAME(Jahr));
 				break;
 			default:
 				break;
@@ -259,9 +286,8 @@ uint8_t einst(uint8_t posit){
 		{
 			if(Sekunden!=sektemp){
 				zeit();
-				//ausgabe(0);
 			}
-			if(debounce(&PIND,3)){
+			if(debounce(&PIND,2)){
 				sekoffset++;
 				if (sekoffset==10)
 				{
@@ -279,7 +305,6 @@ uint8_t einst(uint8_t posit){
 		{
 			if(Sekunden!=sektemp){
 				zeit();
-				//ausgabe(0);
 			}
 			erhoehen(&tempoffset,10,3,NAME(tempoffset));
 		}
@@ -287,22 +312,26 @@ uint8_t einst(uint8_t posit){
 		break;
 	case 4: //Wecker einstellen
 		temp = 0;
+		aus(1,5);
 		while (temp<2)
 		{
 			if (Sekunden!=sektemp)
 			{
 				zeit();
 			}
-			if(debounce(&PIND,2));{
+			if(debounce(&PIND,3))
+			{
 				temp++;
+				aus(1,5);
+				aus(2,0);
 			}
 			switch (temp)
 			{
 				case 0:
-					erhoehen(&WStunden,60,5,NAME(WStunden));
+					erhoehen(&WStunden,24,5,NAME(WStunden));
 					break;
 				case 1:
-					erhoehen(&WMinuten,24,5,NAME(WMinuten));
+					erhoehen(&WMinuten,60,5,NAME(WMinuten));
 					break;
 			}
 			

@@ -56,7 +56,7 @@ uint8_t einst(uint8_t posit);
 void erhoehen(uint8_t *var, uint8_t obergrenze, uint8_t pos, const char *data);
 void wtag(uint8_t numm);
 void aus(uint8_t zeile, uint8_t pos);
-void Kalenderaus();
+void Kalenderaus(uint8_t pos);
 void zeitaus(uint8_t pos);
 
 
@@ -68,7 +68,7 @@ inline uint8_t debounce(volatile uint8_t *port, uint8_t pin)
 	{
 		/* Pin wurde auf Masse gezogen, 100ms warten   */
 		_delay_ms(50);   // Maximalwert des Parameters an _delay_ms
-		//_delay_ms(50);   // beachten, vgl. Dokumentation der avr-libc
+		_delay_ms(10);   // beachten, vgl. Dokumentation der avr-libc
 		if ( !(*port & (1 << pin)) )
 		{
 			/* Anwender Zeit zum Loslassen des Tasters geben */
