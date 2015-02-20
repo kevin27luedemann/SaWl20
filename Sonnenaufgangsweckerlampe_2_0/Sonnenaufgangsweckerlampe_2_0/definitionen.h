@@ -29,8 +29,8 @@ uint8_t WMinuten = 0;
 uint8_t Wan = 0;
 uint8_t sektemp=0;
 double tempera;
-uint8_t sekoffset=0;
-uint8_t tempoffset = 2;
+int8_t sekoffset=0;
+int8_t tempoffset = 2;
 uint8_t Tag = 5;
 uint8_t Monat = 10;
 uint8_t Jahr = 15;
@@ -59,6 +59,7 @@ void aus(uint8_t zeile, uint8_t pos);
 void Kalenderaus(uint8_t pos);
 void zeitaus(uint8_t pos);
 uint8_t menu();
+void temperatur();
 
 
 #endif /* DEFINITIONEN_H_ */

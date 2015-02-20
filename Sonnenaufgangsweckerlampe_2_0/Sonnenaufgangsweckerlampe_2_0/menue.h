@@ -10,20 +10,24 @@
 #define MENUE_H_
 
 uint8_t menu(){
-	uint8_t pos = 0;
-	bool stop = true;
-	while (!debounce(&PIND,PD4))
+	uint8_t posit = 0;
+	while (true)
 	{
-		switch (pos)
+		switch (posit)
 		{
 			case 0:
 				//Weckzeit anzeigen und einstellen mit PD2
+				lcd_clear();
 				aus(1,5);
 				aus(2,0);
 				lcd_string("Werktags");
-				while(stop)
+				posit = posit + 1;
+				while(!debounce(&PIND,PD3))
 				{
 					//Zeitabfrage mit einbauen
+					if(Sekunden!=sektemp){
+						zeit();
+					}
 					if (debounce(&PIND,PD2))
 					{
 						einst(4);
@@ -33,50 +37,49 @@ uint8_t menu(){
 					{
 						return 1;
 					}
-					if (debounce(&PIND,PD3))
-					{
-						stop= false;
-					}
 				}
-				stop=true;
-				pos++;
 				break;
 			
 			case 1:
 				//Weckzeit anzeigen und einstellen am Wochenende 
 				//Jetzt noch nicht vollsteandig implmentiert
+				lcd_clear();
 				aus(1,5);
 				aus(2,0);
 				lcd_string("Wohenende nein");
-				while (stop)
+				while (!debounce(&PIND,PD3))
 				{
+					if(Sekunden!=sektemp){
+						zeit();
+					}
 					if (debounce(&PIND,PD2))
 					{
 						//Einstellungen hinzu
+						//lcd_string("Wohenende nein");
 					}
 					if (debounce(&PIND,PD4))
 					{
 						return 1;
 					}
-					if (debounce(&PIND,PD3))
-					{
-						stop= false;
-					}
 				}
-				stop=true;
-				pos++;
+				posit++;
 				break;
 			
 			case 2:
 				//Kallender einstellen
 				//Jetzt noch nicht implementiert
+				lcd_clear();
 				aus(1,2);
 				aus(2,0);
 				lcd_string("Kellender nein");
 				while (!debounce(&PIND,PD3))
 				{
+					if(Sekunden!=sektemp){
+						zeit();
+					}
 					if (debounce(&PIND,PD2))
 					{
+						//lcd_string("Kellender nein");
 						//Einstellungen hinzu
 					}
 					if (debounce(&PIND,PD4))
@@ -84,32 +87,89 @@ uint8_t menu(){
 						return 1;
 					}
 				}
-				pos++;
+				posit++;
 				break;
 			
 			case 3:
 				//Zeit einstellen ohnen Sekunden
+				lcd_clear();
 				aus(1,3);
 				aus(2,0);
 				lcd_string("Zeit");
 				while (!debounce(&PIND,PD3))
 				{
+					if(Sekunden!=sektemp){
+						zeit();
+					}
 					if (debounce(&PIND,PD2))
 					{
 						einst(0);
+						lcd_string("Zeit");
 					}
 					if (debounce(&PIND,PD4))
 					{
 						return 1;
 					}
 				}
-				pos++;
+				posit++;
+				break;
+				
+			case 4:
+				//Sekundenoffset einstellen
+				lcd_clear();
+				lcd_home();
+				lcd_string("Sekundenoffset:");
+				aus(2,0);
+				itoa(sekoffset,Buffer,10);
+				lcd_string(Buffer);
+				while (!debounce(&PIND,PD3))
+				{
+					if(Sekunden!=sektemp){
+						zeit();
+					}
+					if (debounce(&PIND,PD2))
+					{
+						einst(2);
+					}
+					if (debounce(&PIND,PD4))
+					{
+						return 1;
+					}
+				}
+				posit++;
+				break;
+				
+			case 5:
+				//Temperaturoffset einstellen
+				lcd_clear();
+				lcd_home();
+				lcd_string("Temperaturoffset:");
+				aus(2,0);
+				itoa(tempoffset,Buffer,10);
+				lcd_string(Buffer);
+				while (!debounce(&PIND,PD3))
+				{
+					if(Sekunden!=sektemp){
+						zeit();
+					}
+					if (debounce(&PIND,PD2))
+					{
+						einst(3);
+					}
+					if (debounce(&PIND,PD4))
+					{
+						temperatur();
+						return 1;
+					}
+				}
+				temperatur();
+				posit++;
 				break;
 			
 			default:
+				posit=0;
 				break;
 		}
-		pos=0;
 	}
 return 0;
 }

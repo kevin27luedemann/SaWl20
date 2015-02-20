@@ -213,14 +213,16 @@ uint8_t einst(uint8_t posit){
 		//Einstellen Zeit
 		//alles einstellen bis auf Sekunden
 		//diese werden auf 0 gesetzt
-		aus(1,3);
+		aus(1,6);
+		aus(2,0);
+		lcd_string(NAME(Stunden));
 		while(temp<3)
 		{
 			if(debounce(&PIND,3))
 			{
 				temp++;
 				lcd_clear();
-				aus(1,3);
+				aus(1,6);
 				aus(2,0);
 				switch (temp)
 				{
@@ -237,23 +239,23 @@ uint8_t einst(uint8_t posit){
 						break;
 				}
 			}
-			if(Sekunden!=sektemp){
+			/*if(Sekunden!=sektemp){
 				zeit();
 				//ausgabe(0);
 				//Es muss eine richtge Ausgabe speziell fuer dieses Einstellung geschrieben werden
 				//besonders wichtig ist, dass die alte Ausgaba ersetzt werden muss
-			}
+			}*/
 			switch (temp)
 			{
 			case 0:
-				erhoehen(&Stunden,60,3,NAME(Stunden));
+				erhoehen(&Stunden,60,6,NAME(Stunden));
 				break;
 			case 1:
-				erhoehen(&Minuten,60,3,NAME(Minuten));
+				erhoehen(&Minuten,60,6,NAME(Minuten));
 				break;
 			case 2:
 				//nur jetzt WochenTag
-				erhoehen(&WochenTag,7,3,NAME(WochenTag));
+				erhoehen(&WochenTag,7,6,NAME(WochenTag));
 				break;
 			default:
 				break;
@@ -266,6 +268,8 @@ uint8_t einst(uint8_t posit){
 		//Einstellen der Tage
 		temp = 0;
 		aus(1,0);
+		aus(2,0);
+		lcd_string(NAME(Tag));
 		while(temp< 3)
 		{
 			if(debounce(&PIND,3))
@@ -296,37 +300,71 @@ uint8_t einst(uint8_t posit){
 	case 2:
 		//Einstellen Sekundenoffset
 		//default =0
-		while(debounce(&PIND,3));
-		{
-			if(Sekunden!=sektemp){
-				zeit();
-			}
-			if(debounce(&PIND,2)){
-				sekoffset++;
-				if (sekoffset==10)
-				{
-					sekoffset=0;
-				}
-					
-			}
+		lcd_clear();
+		lcd_home();
+		lcd_string("Sekundenoffset:");
+		aus(2,0);
+		itoa(sekoffset,Buffer,10);
+		lcd_string(Buffer);
+		if(Sekunden!=sektemp){
+			zeit();
 		}
+		if(debounce(&PIND,2))
+		{
+			sekoffset++;
+			lcd_clear();
+			lcd_home();
+			lcd_string("Sekundenoffset:");
+			aus(2,0);
+			itoa(sekoffset,Buffer,10);
+			lcd_string(Buffer);
+			
+			if (sekoffset>=5)
+			{
+				sekoffset=-5;
+			}
+				
+		}
+		
 		return 0;
 		break;
 	case 3:
 		//Einstellen Temperaturoffset
 		//default = 0;
-		while(debounce(&PIND,3));
-		{
-			if(Sekunden!=sektemp){
-				zeit();
-			}
-			erhoehen(&tempoffset,10,3,NAME(tempoffset));
+		lcd_clear();
+		lcd_home();
+		lcd_string("Temperaturoffset:");
+		aus(2,0);
+		itoa(tempoffset,Buffer,10);
+		lcd_string(Buffer);
+		
+		if(Sekunden!=sektemp){
+			zeit();
 		}
+		if(debounce(&PIND,2))
+		{
+			tempoffset++;
+			lcd_clear();
+			lcd_home();
+			lcd_string("Temperaturoffset:");
+			aus(2,0);
+			itoa(tempoffset,Buffer,10);
+			lcd_string(Buffer);
+			
+			if (tempoffset>=10)
+			{
+				tempoffset=-10;
+			}
+			
+		}
+		
 		return 0;
 		break;
 	case 4: //Wecker einstellen
 		temp = 0;
 		aus(1,5);
+		aus(2,0);
+		lcd_string(NAME(WStunden));
 		while (temp<2)
 		{
 			if (Sekunden!=sektemp)

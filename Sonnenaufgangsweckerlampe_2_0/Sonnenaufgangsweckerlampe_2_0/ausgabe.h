@@ -118,7 +118,7 @@ void aus(uint8_t zeile, uint8_t pos){
 					
 					break;
 				case 3:
-					//Nur Zeit ohne Sekunden mit WDAY
+					//Nur Zeit mit Sekunden mit WDAY
 					Kalenderaus(1);
 					zeitaus(1);
 					
@@ -127,7 +127,7 @@ void aus(uint8_t zeile, uint8_t pos){
 				case 4:
 					lcd_string("Guten Tag");
 					lcd_setcursor(0,2);
-					lcd_string("Wecker einstellen");
+					lcd_string("Wecker start");
 					
 					break;
 				
@@ -139,6 +139,13 @@ void aus(uint8_t zeile, uint8_t pos){
 					lcd_string(":");
 					itoa(WMinuten,Buffer,10);
 					lcd_string(Buffer);
+					
+					break;
+					
+				case 6:
+					//Zeit ohne Sekunden mit WDAY
+					Kalenderaus(1);
+					zeitaus(0);
 					
 					break;
 			}

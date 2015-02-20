@@ -23,7 +23,6 @@ int main(void)
 			zeit();
 			aus(1,3);
 			aus(2,1);
-			//ausgabe(1);
 		}
 		if(debounce(&PIND,2))
 		{
@@ -33,6 +32,8 @@ int main(void)
 		if (debounce(&PIND,PD4))
 		{
 			menu();
+			aus(1,3);
+			aus(2,1);
 		}
 	}
 	
