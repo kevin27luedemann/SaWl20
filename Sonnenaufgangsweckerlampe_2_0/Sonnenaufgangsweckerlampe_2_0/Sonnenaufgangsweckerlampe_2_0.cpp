@@ -30,6 +30,10 @@ int main(void)
 			Wan=0;
 			PORTC &= ~(1<<PC5);
 		}
+		if (debounce(&PIND,PD4))
+		{
+			menu();
+		}
 	}
 	
 	return 0;

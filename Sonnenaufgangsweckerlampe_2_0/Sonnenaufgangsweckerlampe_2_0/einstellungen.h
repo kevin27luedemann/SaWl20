@@ -49,7 +49,7 @@ void init(){
 	(void) ADCW;
 	
 	//Eingänge
-	PORTD |= (1<<PD2) | (1<<PD3);
+	PORTD |= (1<<PD2) | (1<<PD3) | (1<<PD4);
 	
 	//Ausgänge
 	DDRC = (1<<PC5);
@@ -222,13 +222,27 @@ uint8_t einst(uint8_t posit){
 				lcd_clear();
 				aus(1,3);
 				aus(2,0);
+				switch (temp)
+				{
+					case 0:
+						lcd_string(NAME(Stunden));
+						break;
+					case 1:
+						lcd_string(NAME(Minuten));
+						break;
+					case 2:
+						lcd_string(NAME(WochenTag));
+						break;
+					default:
+						break;
+				}
 			}
-			/*if(Sekunden!=sektemp){
+			if(Sekunden!=sektemp){
 				zeit();
 				//ausgabe(0);
 				//Es muss eine richtge Ausgabe speziell fuer dieses Einstellung geschrieben werden
 				//besonders wichtig ist, dass die alte Ausgaba ersetzt werden muss
-			}*/
+			}
 			switch (temp)
 			{
 			case 0:
@@ -324,6 +338,17 @@ uint8_t einst(uint8_t posit){
 				temp++;
 				aus(1,5);
 				aus(2,0);
+				switch (temp)
+				{
+					case 0:
+						lcd_string(NAME(WStunden));
+						break;
+					case 1:
+						lcd_string(NAME(WMinuten));
+						break;
+					default:
+						break;
+				}
 			}
 			switch (temp)
 			{
