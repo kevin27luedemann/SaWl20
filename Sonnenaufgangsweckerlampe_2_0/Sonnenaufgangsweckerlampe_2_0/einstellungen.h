@@ -18,10 +18,7 @@ void zeitsetzen(){
 	WMinuten[0]=35;
 	WStunden[1]=7;
 	WMinuten[1]=35;
-//	einsweck();
-//	einstzeit();
 	einst(4);
-//	einst(1); //Noch keinen Kalender, da er in den Einstellungen zu komplex ist
 	einst(0);
 	sekoffset=1;
 }
@@ -30,16 +27,8 @@ void init(){
 	//LCD einstellen und erste Ausgabe
 	lcd_init();
 	aus(1,4);
-	//lcd_string("Wecker");
-	//lcd_setcursor( 0, 2 );
-	//lcd_string("Start!");
 	_delay_ms(1500);
 	lcd_clear();
-	
-	//SPI
-	//SPCR = (1<<SPE) | (1<<MSTR) | (1<<DORD);
-	//SPSR = (1<<SPI2X);
-	//SPDR = 0;
 	
 	//ADC
 	ADMUX = (1<<REFS0);
@@ -70,118 +59,6 @@ void init(){
 	
 	//Wecker einschalten
 	Wan=0;
-	
-}
-
-void einstzeit(){
-	aus(1,0);
-	aus(2,0);
-	lcd_string(NAME(WochenTag));
-	while(!debounce(&PIND,3)){
-		/*if (debounce(&PIND,2))
-		{
-			WochenTag++;
-			if (WochenTag==7)
-			{
-				WochenTag=0;
-			}
-			aus(1,0);
-			aus(2,0);
-			lcd_string(NAME(WochenTag));
-		}*/
-		erhoehen(&WochenTag,7,0,NAME(WochenTag));
-		
-	}
-	aus(1,0);
-	aus(2,0);
-	lcd_string(NAME(Stunden));
-	while(!debounce(&PIND,3)){
-		if (debounce(&PIND,2))
-		{
-			Stunden++;
-			if (Stunden==24)
-			{
-				Stunden=0;
-			}
-			aus(1,0);
-			aus(2,0);
-			lcd_string(NAME(Stunden));
-		}
-		
-	}
-	aus(1,0);
-	aus(2,0);
-	lcd_string(NAME(Minuten));
-	while(!debounce(&PIND,3)){
-		if (debounce(&PIND,2))
-		{
-			Minuten++;
-			if (Minuten==60)
-			{
-				Minuten=0;
-			}
-			aus(1,0);
-			aus(2,0);
-			lcd_string(NAME(Minuten));
-		}
-		
-	}
-	aus(1,0);
-	aus(2,0);
-	lcd_string(NAME(Sekunden));
-	while(!debounce(&PIND,3)){
-		if (debounce(&PIND,2))
-		{
-			Sekunden++;
-			if (Sekunden==60)
-			{
-				Sekunden=0;
-			}
-			aus(1,0);
-			aus(2,0);
-			lcd_string(NAME(Sekunden));
-		}
-		
-	}
-}
-
-void einsweck(){
-	lcd_clear();
-	lcd_home();
-	aus(1,5);
-	aus(2,0);
-	lcd_string(NAME(WStunden[0]));
-	while(!debounce(&PIND,3)){
-		if (debounce(&PIND,2))
-		{
-			WStunden[0]++;
-			if (WStunden[0]==24)
-			{
-				WStunden[0]=0;
-			}
-			aus(1,5);
-			aus(2,0);
-			lcd_string(NAME(WStunden[0]));
-		}
-	}
-	
-	aus(1,5);
-	aus(2,0);
-	lcd_string(NAME(WMinuten[0]));
-	while(!debounce(&PIND,3)){
-		if (debounce(&PIND,2))
-		{
-			WMinuten[0]++;
-			if (WMinuten[0]==60)
-			{
-				WMinuten[0]=0;
-			}
-			aus(1,5);
-			aus(2,0);
-			lcd_string(NAME(WMinuten[0]));
-		}
-		
-	}
 	
 }
 

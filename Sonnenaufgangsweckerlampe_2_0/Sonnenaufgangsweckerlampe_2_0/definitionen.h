@@ -31,9 +31,6 @@ uint8_t sektemp=0;
 double tempera;
 int8_t sekoffset=0;
 int8_t tempoffset = 2;
-uint8_t Tag = 5;
-uint8_t Monat = 10;
-uint8_t Jahr = 15;
 uint8_t lampenstaerke = 1;
 char Buffer[20];
 
@@ -42,13 +39,9 @@ char Buffer[20];
 //Funktionen
 void zeit();
 inline uint8_t debounce(volatile uint8_t *port, uint8_t pin);
-void sende (uint8_t zahl);
 void zeitsetzen();
 void init();
 void Wecker();
-void ausgabe(uint8_t pos);
-void einstzeit();
-void einsweck();
 void init();
 void zeitsetzen();
 uint16_t ADC_Read( uint8_t channel );
@@ -57,7 +50,6 @@ uint8_t einst(uint8_t posit);
 void erhoehen(uint8_t *var, uint8_t obergrenze, uint8_t pos, const char *data);
 void wtag(uint8_t numm);
 void aus(uint8_t zeile, uint8_t pos);
-void Kalenderaus(uint8_t pos);
 void zeitaus(uint8_t pos);
 uint8_t menu();
 void temperatur();
@@ -81,18 +73,4 @@ inline uint8_t debounce(volatile uint8_t *port, uint8_t pin)
 		}
 	}
 	return 0;
-}
-
-void sende (uint8_t zahl){
-	//PORTC |= (1<<PC2);
-	PORTC |= (1<<PC1);
-	while(!(SPSR & (1<<SPIF))){}
-	SPDR=zahl;
-	while(!(SPSR & (1<<SPIF))){}
-	PORTB |= (1<<PB2);
-	PORTB &= ~(1<<PB2);
-	_delay_ms(500);
-	PORTC &= ~(1<<PC1);
-	//PORTC &= ~(1<<PC2);
-	_delay_ms(500);
 }

@@ -53,17 +53,10 @@ void zeit(){
 		if(Stunden >= 24){
 			Stunden = 0;
 			WochenTag++;
-			Tag++;
 			if (WochenTag>=7)
 			{
 				WochenTag=0;
 			}
-			/*if (Monat==2)
-			{
-				if (Tag==28)
-				{
-				}
-			}*/
 			Sekunden += sekoffset; //Ausgleich der VerlustSekunden
 		}
 	}

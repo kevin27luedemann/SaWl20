@@ -54,7 +54,7 @@ int main(void)
 				default:
 					break;
 			}
-			if ( PORTC& (1<<PC3))
+			if ( PORTC& (1<<PC3) )
 			{
 				PORTC &= ~(1<<PC5);
 			}
