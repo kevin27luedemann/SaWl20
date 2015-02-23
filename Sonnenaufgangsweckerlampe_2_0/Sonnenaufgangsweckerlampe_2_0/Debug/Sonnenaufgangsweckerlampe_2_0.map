@@ -58,6 +58,9 @@ Discarded input sections
                 0x00000000       0x32 Sonnenaufgangsweckerlampe_2_0.o
  .text._Z12ADC_Read_Avghh
                 0x00000000       0x5a Sonnenaufgangsweckerlampe_2_0.o
+ .bss.Licht3    0x00000000        0x2 Sonnenaufgangsweckerlampe_2_0.o
+ .bss.Licht2    0x00000000        0x2 Sonnenaufgangsweckerlampe_2_0.o
+ .bss.Licht1    0x00000000        0x2 Sonnenaufgangsweckerlampe_2_0.o
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(addsf3.o)
  .bss           0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(addsf3.o)
  .text          0x00000000        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(addsf3x.o)
@@ -702,11 +705,11 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x3026
+.debug_info     0x00000000     0x305c
  *(.debug_info)
- .debug_info    0x00000000     0x2d75 Sonnenaufgangsweckerlampe_2_0.o
- .debug_info    0x00002d75      0x121 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
- .debug_info    0x00002e96      0x190 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
+ .debug_info    0x00000000     0x2dab Sonnenaufgangsweckerlampe_2_0.o
+ .debug_info    0x00002dab      0x121 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
+ .debug_info    0x00002ecc      0x190 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev   0x00000000      0x53b
@@ -715,11 +718,11 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
  .debug_abbrev  0x000003a2       0xad c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
  .debug_abbrev  0x0000044f       0xec c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
 
-.debug_line     0x00000000      0xaef
+.debug_line     0x00000000      0xaee
  *(.debug_line)
- .debug_line    0x00000000      0x7ca Sonnenaufgangsweckerlampe_2_0.o
- .debug_line    0x000007ca       0xab c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
- .debug_line    0x00000875      0x27a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
+ .debug_line    0x00000000      0x7c9 Sonnenaufgangsweckerlampe_2_0.o
+ .debug_line    0x000007c9       0xab c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
+ .debug_line    0x00000874      0x27a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
 
 .debug_frame    0x00000000      0x308
  *(.debug_frame)
@@ -727,13 +730,13 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
  .debug_frame   0x00000264       0x38 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
  .debug_frame   0x0000029c       0x6c c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
 
-.debug_str      0x00000000      0x523
+.debug_str      0x00000000      0x538
  *(.debug_str)
- .debug_str     0x00000000      0x40e Sonnenaufgangsweckerlampe_2_0.o
-                                0x46d (size before relaxing)
- .debug_str     0x0000040e       0x90 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
+ .debug_str     0x00000000      0x423 Sonnenaufgangsweckerlampe_2_0.o
+                                0x482 (size before relaxing)
+ .debug_str     0x00000423       0x90 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
                                 0x111 (size before relaxing)
- .debug_str     0x0000049e       0x85 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
+ .debug_str     0x000004b3       0x85 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
                                 0x12d (size before relaxing)
 
 .debug_loc      0x00000000     0x21b6
