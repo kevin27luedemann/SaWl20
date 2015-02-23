@@ -24,8 +24,8 @@ uint8_t Sekunden = 0;
 uint8_t Minuten = 0;
 uint8_t Stunden = 0;
 uint8_t WochenTag = 0;
-uint8_t WStunden = 0;
-uint8_t WMinuten = 0;
+uint8_t WStunden[2] = {0,0};
+uint8_t WMinuten[2] = {0,0};
 uint8_t Wan = 0;
 uint8_t sektemp=0;
 double tempera;
@@ -34,6 +34,7 @@ int8_t tempoffset = 2;
 uint8_t Tag = 5;
 uint8_t Monat = 10;
 uint8_t Jahr = 15;
+uint8_t lampenstaerke = 1;
 char Buffer[20];
 
 #define NAME(x) #x

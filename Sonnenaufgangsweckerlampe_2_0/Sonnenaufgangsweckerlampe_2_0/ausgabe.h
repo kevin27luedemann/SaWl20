@@ -31,10 +31,10 @@ void ausgabe(uint8_t pos){
 	
 	if (pos==2)
 	{
-		itoa(WStunden, Buffer, 10 );
+		itoa(WStunden[0], Buffer, 10 );
 		lcd_string(Buffer);
 		
-		itoa(WMinuten, Buffer, 10);
+		itoa(WMinuten[0], Buffer, 10);
 		lcd_string(":");
 		lcd_string(Buffer);
 		
@@ -134,10 +134,10 @@ void aus(uint8_t zeile, uint8_t pos){
 				case 5:
 					//Wecker
 					lcd_string("Weckzeit: ");
-					itoa(WStunden,Buffer,10);
+					itoa(WStunden[0],Buffer,10);
 					lcd_string(Buffer);
 					lcd_string(":");
-					itoa(WMinuten,Buffer,10);
+					itoa(WMinuten[0],Buffer,10);
 					lcd_string(Buffer);
 					
 					break;

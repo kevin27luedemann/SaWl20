@@ -14,8 +14,10 @@ void zeitsetzen(){
 	Stunden	= 5;
 	Sekunden = 0;
 	WochenTag=6;
-	WStunden=5;
-	WMinuten=35;
+	WStunden[0]=5;
+	WMinuten[0]=35;
+	WStunden[1]=7;
+	WMinuten[1]=35;
 //	einsweck();
 //	einstzeit();
 	einst(4);
@@ -148,35 +150,35 @@ void einsweck(){
 	lcd_home();
 	aus(1,5);
 	aus(2,0);
-	lcd_string(NAME(WStunden));
+	lcd_string(NAME(WStunden[0]));
 	while(!debounce(&PIND,3)){
 		if (debounce(&PIND,2))
 		{
-			WStunden++;
-			if (WStunden==24)
+			WStunden[0]++;
+			if (WStunden[0]==24)
 			{
-				WStunden=0;
+				WStunden[0]=0;
 			}
 			aus(1,5);
 			aus(2,0);
-			lcd_string(NAME(WStunden));
+			lcd_string(NAME(WStunden[0]));
 		}
 	}
 	
 	aus(1,5);
 	aus(2,0);
-	lcd_string(NAME(WMinuten));
+	lcd_string(NAME(WMinuten[0]));
 	while(!debounce(&PIND,3)){
 		if (debounce(&PIND,2))
 		{
-			WMinuten++;
-			if (WMinuten==60)
+			WMinuten[0]++;
+			if (WMinuten[0]==60)
 			{
-				WMinuten=0;
+				WMinuten[0]=0;
 			}
 			aus(1,5);
 			aus(2,0);
-			lcd_string(NAME(WMinuten));
+			lcd_string(NAME(WMinuten[0]));
 		}
 		
 	}
@@ -265,35 +267,33 @@ uint8_t einst(uint8_t posit){
 		return 0;
 		break;
 	case 1:
-		//Einstellen der Tage
+		//Einstellen der Lampenstärke
+		//default=1
 		temp = 0;
-		aus(1,0);
+		lcd_clear();
+		lcd_home();
+		lcd_string("Lampenstärke:");
 		aus(2,0);
-		lcd_string(NAME(Tag));
-		while(temp< 3)
+		itoa(lampenstaerke,Buffer,10);
+		lcd_string(Buffer);
+		if(Sekunden!=sektemp){
+			zeit();
+		}
+		if(debounce(&PIND,2))
 		{
-			if(debounce(&PIND,3))
+			lampenstaerke++;
+			lcd_clear();
+			lcd_home();
+			lcd_string("Lampenstärke:");
+			aus(2,0);
+			itoa(lampenstaerke,Buffer,10);
+			lcd_string(Buffer);
+			
+			if (lampenstaerke>=3)
 			{
-				temp++;
-				aus(1,0);
-				aus(2,0);
+				lampenstaerke=1;
 			}
-			if(Sekunden!=sektemp){
-				zeit();
-			}
-			switch (temp){
-			case 0:
-				erhoehen(&Tag,30,0,NAME(Tag));
-				break;
-			case 1:
-				erhoehen(&Monat,12,0,NAME(Monat));
-				break;
-			case 2:
-				erhoehen(&Jahr,30,0,NAME(Jahr));
-				break;
-			default:
-				break;
-			}
+			
 		}
 		return 0;
 		break;
@@ -364,7 +364,7 @@ uint8_t einst(uint8_t posit){
 		temp = 0;
 		aus(1,5);
 		aus(2,0);
-		lcd_string(NAME(WStunden));
+		lcd_string(NAME(WStunden[0]));
 		while (temp<2)
 		{
 			if (Sekunden!=sektemp)
@@ -379,10 +379,10 @@ uint8_t einst(uint8_t posit){
 				switch (temp)
 				{
 					case 0:
-						lcd_string(NAME(WStunden));
+						lcd_string(NAME(WStunden[0]));
 						break;
 					case 1:
-						lcd_string(NAME(WMinuten));
+						lcd_string(NAME(WMinuten[0]));
 						break;
 					default:
 						break;
@@ -391,19 +391,59 @@ uint8_t einst(uint8_t posit){
 			switch (temp)
 			{
 				case 0:
-					erhoehen(&WStunden,24,5,NAME(WStunden));
+					erhoehen(&WStunden[0],24,5,NAME(WStunden[0]));
 					break;
 				case 1:
-					erhoehen(&WMinuten,60,5,NAME(WMinuten));
+					erhoehen(&WMinuten[0],60,5,NAME(WMinuten[0]));
 					break;
 			}
 			
 		}
 		return 0;
 		break;
-//	case //alle einstellungen der Wecker
-//		return 0;
-//		break;
+
+	case 5:
+		temp = 0;
+		aus(1,5);
+		aus(2,0);
+		lcd_string(NAME(WStunden[1]));
+		while (temp<2)
+		{
+			if (Sekunden!=sektemp)
+			{
+				zeit();
+			}
+			if(debounce(&PIND,3))
+			{
+				temp++;
+				aus(1,5);
+				aus(2,0);
+				switch (temp)
+				{
+					case 0:
+					lcd_string(NAME(WStunden[1]));
+					break;
+					case 1:
+					lcd_string(NAME(WMinuten[1]));
+					break;
+					default:
+					break;
+				}
+			}
+			switch (temp)
+			{
+				case 0:
+				erhoehen(&WStunden[1],24,5,NAME(WStunden[1]));
+				break;
+				case 1:
+				erhoehen(&WMinuten[1],60,5,NAME(WMinuten[1]));
+				break;
+			}
+			
+		}
+		return 0;
+		break;
+
 	default:
 		return 1;
 		break;

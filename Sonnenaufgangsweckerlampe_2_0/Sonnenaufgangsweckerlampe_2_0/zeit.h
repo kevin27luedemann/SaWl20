@@ -12,8 +12,17 @@
 void Wecker(){
 	if (WochenTag!=0 && WochenTag!=6)
 	{
-		if(Stunden==WStunden){
-			if(Minuten==WMinuten){
+		if(Stunden==WStunden[0]){
+			if(Minuten==WMinuten[0]){
+				Wan = 1;
+				PORTC |= (1<<PC5);
+			}
+		}
+	}
+	else
+	{
+		if(Stunden==WStunden[1]){
+			if(Minuten==WMinuten[1]){
 				Wan = 1;
 				PORTC |= (1<<PC5);
 			}

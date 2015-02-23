@@ -35,6 +35,30 @@ int main(void)
 			aus(1,3);
 			aus(2,1);
 		}
+		if (debounce(&PIND,PD3))
+		{
+			switch (lampenstaerke)
+			{
+				case 1:
+					PORTC |= (1<<PC5);
+					break;
+					
+				case 2:
+					PORTC |= (1<<PC5);
+					break;
+					
+				case 3:
+					PORTC |= (1<<PC5);
+					break;
+					
+				default:
+					break;
+			}
+			if ( PORTC& (1<<PC3))
+			{
+				PORTC &= ~(1<<PC5);
+			}
+		}
 	}
 	
 	return 0;

@@ -41,12 +41,11 @@ uint8_t menu(){
 				break;
 			
 			case 1:
-				//Weckzeit anzeigen und einstellen am Wochenende 
-				//Jetzt noch nicht vollsteandig implmentiert
+			//Weckzeit anzeige und einstellungen am Wochenende
 				lcd_clear();
 				aus(1,5);
 				aus(2,0);
-				lcd_string("Wohenende nein");
+				lcd_string("Wohenende");
 				while (!debounce(&PIND,PD3))
 				{
 					if(Sekunden!=sektemp){
@@ -54,8 +53,8 @@ uint8_t menu(){
 					}
 					if (debounce(&PIND,PD2))
 					{
-						//Einstellungen hinzu
-						//lcd_string("Wohenende nein");
+						einst(5);
+						lcd_string("Wohenende");
 					}
 					if (debounce(&PIND,PD4))
 					{
@@ -66,12 +65,12 @@ uint8_t menu(){
 				break;
 			
 			case 2:
-				//Kallender einstellen
+				//Lampe einstellen
 				//Jetzt noch nicht implementiert
 				lcd_clear();
 				aus(1,2);
 				aus(2,0);
-				lcd_string("Kellender nein");
+				lcd_string("Lampenstärke:");
 				while (!debounce(&PIND,PD3))
 				{
 					if(Sekunden!=sektemp){
@@ -79,8 +78,8 @@ uint8_t menu(){
 					}
 					if (debounce(&PIND,PD2))
 					{
-						//lcd_string("Kellender nein");
-						//Einstellungen hinzu
+						einst(1);
+						lcd_string("Lampenstärke");
 					}
 					if (debounce(&PIND,PD4))
 					{
