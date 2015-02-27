@@ -44,7 +44,10 @@ int main(void)
 		{
 			if (!displaystat)
 			{
-				PORTC |= (1<<PC2); //display einsschalten
+				PORTC |= (1<<PC2); //display einsschalten und neue anzeige starten
+				lcd_init();
+				aus(1,3);
+				aus(2,1);
 				displaystat=true;
 			}
 			else

@@ -164,6 +164,34 @@ uint8_t menu(){
 				temperatur();
 				posit++;
 				break;
+				
+			case 6:
+				//Display ausschalten
+				lcd_clear();
+				lcd_home();
+				lcd_string("Display");
+				aus(2,0);
+				lcd_string("ausschalten?");
+				while (!debounce(&PIND,PD3))
+				{
+					if(Sekunden!=sektemp){
+						zeit();
+					}
+					if (debounce(&PIND,PD2))
+					{
+						displaystat=false;
+						displayoff=0;
+						PORTC &= ~(1<<PC2); //Display ausschalten
+						return 1;
+					}
+					if (debounce(&PIND,PD4))
+					{
+						return 1;
+					}
+				}
+				posit++;
+				break;
+				
 			
 			default:
 				posit=0;
