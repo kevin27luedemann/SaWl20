@@ -15,7 +15,7 @@ void Wecker(){
 		if(Stunden==WStunden[0]){
 			if(Minuten==WMinuten[0]){
 				Wan = 1;
-				PORTC |= (1<<PC5);
+				lichteinaus(4);
 			}
 		}
 	}
@@ -24,13 +24,44 @@ void Wecker(){
 		if(Stunden==WStunden[1]){
 			if(Minuten==WMinuten[1]){
 				Wan = 1;
-				PORTC |= (1<<PC5);
+				lichteinaus(4);
 			}
 		}
 	}
 }
 
-void weckereinaus(uint8_t pos){
+void lichteinaus(uint8_t pos){
+	switch (pos)
+	{
+		case 0:
+			PORTC &= ~((1<<PC5) | (1<<PC4) | (1<<PC3));
+			break;
+			
+		case 1:
+			PORTC |= (1<<PC5);
+			break;
+		
+		case 2:
+			PORTC |= (1<<PC4);
+			break;
+			
+		case 3: 
+			PORTC |= (1<<PC3);
+			break;
+		
+		case 4:
+			PORTC |= ((1<<PC5) | (1<<PC4) | (1<<PC3));
+			break;
+		
+		case 5:
+			PORTC |= ((1<<PC5) | (1<<PC4));
+			break;
+		
+		default:
+			break;
+	}
+	
+	
 	
 
 

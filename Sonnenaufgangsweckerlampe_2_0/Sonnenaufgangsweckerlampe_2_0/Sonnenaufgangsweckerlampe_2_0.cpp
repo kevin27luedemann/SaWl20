@@ -21,34 +21,54 @@ int main(void)
 		if (Sekunden!=sektemp)
 		{
 			zeit();
-			aus(1,3);
-			aus(2,1);
+			if (displaystat)
+			{
+				aus(1,3);
+				aus(2,1);
+				displayoff++;
+			}
+			if (displayoff>=120)
+			{
+				displaystat=false;
+				displayoff=0;
+				PORTC &= ~(1<<PC2); //Display ausschalten
+			}
+			
 		}
 		if(debounce(&PIND,2))
 		{
 			Wan=0;
-			PORTC &= ~(1<<PC5);
+			lichteinaus(0);
 		}
 		if (debounce(&PIND,PD4))
 		{
-			menu();
-			aus(1,3);
-			aus(2,1);
+			if (!displaystat)
+			{
+				PORTC |= (1<<PC2); //display einsschalten
+				displaystat=true;
+			}
+			else
+			{
+				menu();
+				aus(1,3);
+				aus(2,1);
+			}
+			
 		}
 		if (debounce(&PIND,PD3))
 		{
 			switch (lampenstaerke)
 			{
 				case 1:
-					PORTC |= (1<<PC5);
+					lichteinaus(1);
 					break;
 					
 				case 2:
-					PORTC |= (1<<PC5);
+					lichteinaus(5);
 					break;
 					
 				case 3:
-					PORTC |= (1<<PC5);
+					lichteinaus(4);
 					break;
 					
 				default:
@@ -56,7 +76,7 @@ int main(void)
 			}
 			if ( PORTC& (1<<PC3) )
 			{
-				PORTC &= ~(1<<PC5);
+				lichteinaus(0);
 			}
 		}
 	}

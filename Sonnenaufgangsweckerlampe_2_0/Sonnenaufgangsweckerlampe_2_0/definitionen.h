@@ -36,6 +36,8 @@ int8_t sekoffset=0;
 int8_t tempoffset = 2;
 uint8_t lampenstaerke = 1;
 char Buffer[20];
+uint8_t displayoff = 0;
+bool displaystat = true;
 
 #define NAME(x) #x
 
@@ -56,6 +58,7 @@ void aus(uint8_t zeile, uint8_t pos);
 void zeitaus(uint8_t pos);
 uint8_t menu();
 void temperatur(uint8_t);
+void lichteinaus(uint8_t pos);
 
 #endif /* DEFINITIONEN_H_ */
 

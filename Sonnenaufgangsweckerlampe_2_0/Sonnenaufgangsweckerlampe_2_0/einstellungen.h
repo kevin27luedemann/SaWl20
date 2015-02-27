@@ -24,12 +24,6 @@ void zeitsetzen(){
 }
 
 void init(){
-	//LCD einstellen und erste Ausgabe
-	lcd_init();
-	aus(1,4);
-	_delay_ms(1500);
-	lcd_clear();
-	
 	//ADC
 	ADMUX = (1<<REFS0);
 	ADCSRA = (1<<ADPS1) | (1<<ADPS0);
@@ -43,7 +37,14 @@ void init(){
 	PORTD |= (1<<PD2) | (1<<PD3) | (1<<PD4);
 	
 	//Ausgänge
-	DDRC = (1<<PC5);
+	DDRC = (1<<PC5) | (1<<PC4) | (1<<PC3) | (1<<PC2);
+	
+	//LCD einstellen und erste Ausgabe
+	PORTC |= (1<PC2);
+	lcd_init();
+	aus(1,4);
+	_delay_ms(1500);
+	lcd_clear();
 	
 	//erste zeiteinstellung
 	zeitsetzen();
