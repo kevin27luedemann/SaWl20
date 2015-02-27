@@ -55,8 +55,7 @@ void wtag(uint8_t numm);
 void aus(uint8_t zeile, uint8_t pos);
 void zeitaus(uint8_t pos);
 uint8_t menu();
-void temperatur();
-
+void temperatur(uint8_t);
 
 #endif /* DEFINITIONEN_H_ */
 

@@ -30,6 +30,13 @@ void Wecker(){
 	}
 }
 
+void weckereinaus(uint8_t pos){
+	
+
+
+}
+
+
 void temperatur(){
 	ADC_Read(0);
 	uint16_t adcval = ADC_Read(0);
