@@ -282,7 +282,7 @@ uint8_t einst(uint8_t posit){
 
 	case 5:
 		temp = 0;
-		aus(1,5);
+		aus(1,7);
 		aus(2,0);
 		lcd_string(NAME(WStunden[1]));
 		while (temp<2)
@@ -294,7 +294,7 @@ uint8_t einst(uint8_t posit){
 			if(debounce(&PIND,3))
 			{
 				temp++;
-				aus(1,5);
+				aus(1,7);
 				aus(2,0);
 				switch (temp)
 				{
@@ -311,10 +311,10 @@ uint8_t einst(uint8_t posit){
 			switch (temp)
 			{
 				case 0:
-				erhoehen(&WStunden[1],24,5,NAME(WStunden[1]));
+				erhoehen(&WStunden[1],24,7,NAME(WStunden[1]));
 				break;
 				case 1:
-				erhoehen(&WMinuten[1],60,5,NAME(WMinuten[1]));
+				erhoehen(&WMinuten[1],60,7,NAME(WMinuten[1]));
 				break;
 			}
 			

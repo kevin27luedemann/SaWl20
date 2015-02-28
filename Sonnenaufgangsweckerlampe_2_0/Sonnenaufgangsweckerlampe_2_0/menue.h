@@ -43,7 +43,7 @@ uint8_t menu(){
 			case 1:
 			//Weckzeit anzeige und einstellungen am Wochenende
 				lcd_clear();
-				aus(1,5);
+				aus(1,7);
 				aus(2,0);
 				lcd_string("Wohenende");
 				while (!debounce(&PIND,PD3))

@@ -89,7 +89,7 @@ void aus(uint8_t zeile, uint8_t pos){
 					break;
 				
 				case 5:
-					//Wecker
+					//Wecker Werktags
 					lcd_string("Weckzeit: ");
 					itoa(WStunden[0],Buffer,10);
 					lcd_string(Buffer);
@@ -103,6 +103,17 @@ void aus(uint8_t zeile, uint8_t pos){
 					//Zeit ohne Sekunden mit WDAY
 					wtag(WochenTag);
 					zeitaus(0);
+					
+					break;
+					
+				case 7:
+					//Wecker Wochenends
+					lcd_string("Weckzeit: ");
+					itoa(WStunden[1],Buffer,10);
+					lcd_string(Buffer);
+					lcd_string(":");
+					itoa(WMinuten[1],Buffer,10);
+					lcd_string(Buffer);
 					
 					break;
 			}

@@ -278,49 +278,51 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x1998
+.text           0x00000000     0x19d8
  *(.vectors)
  .vectors       0x00000000       0x26 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4/crtm8.o
                 0x00000000                __vector_default
                 0x00000000                __vectors
  *(.vectors)
  *(.progmem.gcc*)
+ .progmem.gcc_sw_table._Z3aushh
+                0x00000026       0x10 Sonnenaufgangsweckerlampe_2_0.o
  *(.progmem*)
- .progmem.data  0x00000026       0xfa c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(ftoa_engine.o)
-                0x00000120                . = ALIGN (0x2)
-                0x00000120                __trampolines_start = .
+ .progmem.data  0x00000036       0xfa c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(ftoa_engine.o)
+                0x00000130                . = ALIGN (0x2)
+                0x00000130                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x00000120        0x0 linker stubs
+ .trampolines   0x00000130        0x0 linker stubs
  *(.trampolines*)
-                0x00000120                __trampolines_end = .
+                0x00000130                __trampolines_end = .
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x00000120                __ctors_start = .
+                0x00000130                __ctors_start = .
  *(.ctors)
-                0x00000120                __ctors_end = .
-                0x00000120                __dtors_start = .
+                0x00000130                __ctors_end = .
+                0x00000130                __dtors_start = .
  *(.dtors)
-                0x00000120                __dtors_end = .
+                0x00000130                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x00000120        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4/crtm8.o
-                0x00000120                __init
+ .init0         0x00000130        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4/crtm8.o
+                0x00000130                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x00000120        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4/crtm8.o
+ .init2         0x00000130        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4/crtm8.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x0000012c       0x16 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr4\libgcc.a(_copy_data.o)
-                0x0000012c                __do_copy_data
- .init4         0x00000142       0x10 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr4\libgcc.a(_clear_bss.o)
-                0x00000142                __do_clear_bss
+ .init4         0x0000013c       0x16 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr4\libgcc.a(_copy_data.o)
+                0x0000013c                __do_copy_data
+ .init4         0x00000152       0x10 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr4\libgcc.a(_clear_bss.o)
+                0x00000152                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -331,170 +333,170 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x00000152        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4/crtm8.o
+ .init9         0x00000162        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4/crtm8.o
  *(.init9)
  *(.text)
- .text          0x00000156        0x2 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4/crtm8.o
-                0x00000156                __vector_1
-                0x00000156                __vector_12
-                0x00000156                __bad_interrupt
-                0x00000156                __vector_6
-                0x00000156                __vector_3
-                0x00000156                __vector_11
-                0x00000156                __vector_13
-                0x00000156                __vector_17
-                0x00000156                __vector_7
-                0x00000156                __vector_5
-                0x00000156                __vector_4
-                0x00000156                __vector_9
-                0x00000156                __vector_2
-                0x00000156                __vector_15
-                0x00000156                __vector_14
-                0x00000156                __vector_10
-                0x00000156                __vector_16
-                0x00000156                __vector_18
-                0x00000158                . = ALIGN (0x2)
+ .text          0x00000166        0x2 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4/crtm8.o
+                0x00000166                __vector_1
+                0x00000166                __vector_12
+                0x00000166                __bad_interrupt
+                0x00000166                __vector_6
+                0x00000166                __vector_3
+                0x00000166                __vector_11
+                0x00000166                __vector_13
+                0x00000166                __vector_17
+                0x00000166                __vector_7
+                0x00000166                __vector_5
+                0x00000166                __vector_4
+                0x00000166                __vector_9
+                0x00000166                __vector_2
+                0x00000166                __vector_15
+                0x00000166                __vector_14
+                0x00000166                __vector_10
+                0x00000166                __vector_16
+                0x00000166                __vector_18
+                0x00000168                . = ALIGN (0x2)
  *(.text.*)
  .text._ZL10lcd_enablev
-                0x00000158        0xe Sonnenaufgangsweckerlampe_2_0.o
+                0x00000168        0xe Sonnenaufgangsweckerlampe_2_0.o
  .text._ZL7lcd_outh
-                0x00000166       0x14 Sonnenaufgangsweckerlampe_2_0.o
+                0x00000176       0x14 Sonnenaufgangsweckerlampe_2_0.o
  .text._Z8lcd_datah
-                0x0000017a       0x1c Sonnenaufgangsweckerlampe_2_0.o
-                0x0000017a                _Z8lcd_datah
+                0x0000018a       0x1c Sonnenaufgangsweckerlampe_2_0.o
+                0x0000018a                _Z8lcd_datah
  .text._Z11lcd_commandh
-                0x00000196       0x1c Sonnenaufgangsweckerlampe_2_0.o
-                0x00000196                _Z11lcd_commandh
+                0x000001a6       0x1c Sonnenaufgangsweckerlampe_2_0.o
+                0x000001a6                _Z11lcd_commandh
  .text._Z9lcd_clearv
-                0x000001b2        0xe Sonnenaufgangsweckerlampe_2_0.o
-                0x000001b2                _Z9lcd_clearv
+                0x000001c2        0xe Sonnenaufgangsweckerlampe_2_0.o
+                0x000001c2                _Z9lcd_clearv
  .text._Z8lcd_initv
-                0x000001c0       0x60 Sonnenaufgangsweckerlampe_2_0.o
-                0x000001c0                _Z8lcd_initv
+                0x000001d0       0x60 Sonnenaufgangsweckerlampe_2_0.o
+                0x000001d0                _Z8lcd_initv
  .text._Z8lcd_homev
-                0x00000220        0xe Sonnenaufgangsweckerlampe_2_0.o
-                0x00000220                _Z8lcd_homev
+                0x00000230        0xe Sonnenaufgangsweckerlampe_2_0.o
+                0x00000230                _Z8lcd_homev
  .text._Z13lcd_setcursorhh
-                0x0000022e       0x28 Sonnenaufgangsweckerlampe_2_0.o
-                0x0000022e                _Z13lcd_setcursorhh
+                0x0000023e       0x28 Sonnenaufgangsweckerlampe_2_0.o
+                0x0000023e                _Z13lcd_setcursorhh
  .text._Z10lcd_stringPKc
-                0x00000256       0x1c Sonnenaufgangsweckerlampe_2_0.o
-                0x00000256                _Z10lcd_stringPKc
+                0x00000266       0x1c Sonnenaufgangsweckerlampe_2_0.o
+                0x00000266                _Z10lcd_stringPKc
  .text._Z8ADC_Readh
-                0x00000272       0x1a Sonnenaufgangsweckerlampe_2_0.o
-                0x00000272                _Z8ADC_Readh
+                0x00000282       0x1a Sonnenaufgangsweckerlampe_2_0.o
+                0x00000282                _Z8ADC_Readh
  .text._Z11lichteinaush
-                0x0000028c       0x40 Sonnenaufgangsweckerlampe_2_0.o
-                0x0000028c                _Z11lichteinaush
+                0x0000029c       0x40 Sonnenaufgangsweckerlampe_2_0.o
+                0x0000029c                _Z11lichteinaush
  .text._Z6Weckerv
-                0x000002cc       0x54 Sonnenaufgangsweckerlampe_2_0.o
-                0x000002cc                _Z6Weckerv
+                0x000002dc       0x54 Sonnenaufgangsweckerlampe_2_0.o
+                0x000002dc                _Z6Weckerv
  .text._Z10temperaturv
-                0x00000320       0xb8 Sonnenaufgangsweckerlampe_2_0.o
-                0x00000320                _Z10temperaturv
+                0x00000330       0xb8 Sonnenaufgangsweckerlampe_2_0.o
+                0x00000330                _Z10temperaturv
  .text._Z4zeitv
-                0x000003d8       0x64 Sonnenaufgangsweckerlampe_2_0.o
-                0x000003d8                _Z4zeitv
+                0x000003e8       0x64 Sonnenaufgangsweckerlampe_2_0.o
+                0x000003e8                _Z4zeitv
  .text._Z4wtagh
-                0x0000043c       0x52 Sonnenaufgangsweckerlampe_2_0.o
-                0x0000043c                _Z4wtagh
+                0x0000044c       0x52 Sonnenaufgangsweckerlampe_2_0.o
+                0x0000044c                _Z4wtagh
  .text._Z7zeitaush
-                0x0000048e       0x90 Sonnenaufgangsweckerlampe_2_0.o
-                0x0000048e                _Z7zeitaush
+                0x0000049e       0x90 Sonnenaufgangsweckerlampe_2_0.o
+                0x0000049e                _Z7zeitaush
  .text._Z3aushh
-                0x0000051e       0xfe Sonnenaufgangsweckerlampe_2_0.o
-                0x0000051e                _Z3aushh
+                0x0000052e      0x12e Sonnenaufgangsweckerlampe_2_0.o
+                0x0000052e                _Z3aushh
  .text._Z8erhoehenPhhhPKc
-                0x0000061c       0x5a Sonnenaufgangsweckerlampe_2_0.o
-                0x0000061c                _Z8erhoehenPhhhPKc
+                0x0000065c       0x5a Sonnenaufgangsweckerlampe_2_0.o
+                0x0000065c                _Z8erhoehenPhhhPKc
  .text._Z5einsth
-                0x00000676      0x42c Sonnenaufgangsweckerlampe_2_0.o
-                0x00000676                _Z5einsth
+                0x000006b6      0x42c Sonnenaufgangsweckerlampe_2_0.o
+                0x000006b6                _Z5einsth
  .text._Z10zeitsetzenv
-                0x00000aa2       0x3a Sonnenaufgangsweckerlampe_2_0.o
-                0x00000aa2                _Z10zeitsetzenv
+                0x00000ae2       0x3a Sonnenaufgangsweckerlampe_2_0.o
+                0x00000ae2                _Z10zeitsetzenv
  .text._Z4menuv
-                0x00000adc      0x450 Sonnenaufgangsweckerlampe_2_0.o
-                0x00000adc                _Z4menuv
+                0x00000b1c      0x450 Sonnenaufgangsweckerlampe_2_0.o
+                0x00000b1c                _Z4menuv
  .text._Z4initv
-                0x00000f2c       0x56 Sonnenaufgangsweckerlampe_2_0.o
-                0x00000f2c                _Z4initv
+                0x00000f6c       0x56 Sonnenaufgangsweckerlampe_2_0.o
+                0x00000f6c                _Z4initv
  .text.__vector_8
-                0x00000f82       0x2a Sonnenaufgangsweckerlampe_2_0.o
-                0x00000f82                __vector_8
- .text.main     0x00000fac       0xfe Sonnenaufgangsweckerlampe_2_0.o
-                0x00000fac                main
+                0x00000fc2       0x2a Sonnenaufgangsweckerlampe_2_0.o
+                0x00000fc2                __vector_8
+ .text.main     0x00000fec       0xfe Sonnenaufgangsweckerlampe_2_0.o
+                0x00000fec                main
  .text.avr-libc.fplib
-                0x000010aa        0xa c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(addsf3.o)
-                0x000010aa                __subsf3
-                0x000010ac                __addsf3
+                0x000010ea        0xa c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(addsf3.o)
+                0x000010ea                __subsf3
+                0x000010ec                __addsf3
  .text.avr-libc.fplib
-                0x000010b4       0xc0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(addsf3x.o)
-                0x000010ce                __addsf3x
+                0x000010f4       0xc0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(addsf3x.o)
+                0x0000110e                __addsf3x
  .text.avr-libc.fplib
-                0x00001174        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(divsf3.o)
-                0x00001174                __divsf3
+                0x000011b4        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(divsf3.o)
+                0x000011b4                __divsf3
  .text.avr-libc.fplib
-                0x00001178       0xcc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(divsf3x.o)
-                0x0000118e                __divsf3x
-                0x00001192                __divsf3_pse
+                0x000011b8       0xcc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(divsf3x.o)
+                0x000011ce                __divsf3x
+                0x000011d2                __divsf3_pse
  .text.avr-libc.fplib
-                0x00001244       0x7a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(floatsisf.o)
-                0x00001244                __floatunsisf
-                0x00001248                __floatsisf
+                0x00001284       0x7a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(floatsisf.o)
+                0x00001284                __floatunsisf
+                0x00001288                __floatsisf
  .text.avr-libc.fplib
-                0x000012be        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_inf.o)
-                0x000012be                __fp_inf
+                0x000012fe        0xc c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_inf.o)
+                0x000012fe                __fp_inf
  .text.avr-libc.fplib
-                0x000012ca        0x6 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_nan.o)
-                0x000012ca                __fp_nan
+                0x0000130a        0x6 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_nan.o)
+                0x0000130a                __fp_nan
  .text.avr-libc.fplib
-                0x000012d0        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_pscA.o)
-                0x000012d0                __fp_pscA
+                0x00001310        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_pscA.o)
+                0x00001310                __fp_pscA
  .text.avr-libc.fplib
-                0x000012de        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_pscB.o)
-                0x000012de                __fp_pscB
+                0x0000131e        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_pscB.o)
+                0x0000131e                __fp_pscB
  .text.avr-libc.fplib
-                0x000012ec       0x22 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_round.o)
-                0x000012ec                __fp_round
+                0x0000132c       0x22 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_round.o)
+                0x0000132c                __fp_round
  .text.avr-libc.fplib
-                0x0000130e       0x44 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_split3.o)
-                0x0000130e                __fp_split3
-                0x0000131e                __fp_splitA
+                0x0000134e       0x44 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_split3.o)
+                0x0000134e                __fp_split3
+                0x0000135e                __fp_splitA
  .text.avr-libc.fplib
-                0x00001352        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_zero.o)
-                0x00001352                __fp_zero
-                0x00001354                __fp_szero
+                0x00001392        0xe c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(fp_zero.o)
+                0x00001392                __fp_zero
+                0x00001394                __fp_szero
  .text.avr-libc.fplib
-                0x00001360        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(mulsf3.o)
-                0x00001360                __mulsf3
+                0x000013a0        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(mulsf3.o)
+                0x000013a0                __mulsf3
  .text.avr-libc.fplib
-                0x00001364       0xc2 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(mulsf3x.o)
-                0x00001378                __mulsf3x
-                0x0000137c                __mulsf3_pse
+                0x000013a4       0xc2 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libm.a(mulsf3x.o)
+                0x000013b8                __mulsf3x
+                0x000013bc                __mulsf3_pse
  .text.avr-libc
-                0x00001426       0x40 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
-                0x00001426                dtostrf
+                0x00001466       0x40 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
+                0x00001466                dtostrf
  .text.avr-libc
-                0x00001466       0x3e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(itoa.o)
-                0x00001466                itoa
+                0x000014a6       0x3e c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(itoa.o)
+                0x000014a6                itoa
  .text.avr-libc
-                0x000014a4      0x2f8 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
-                0x000014a4                dtoa_prf
+                0x000014e4      0x2f8 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
+                0x000014e4                dtoa_prf
  .text.avr-libc
-                0x0000179c      0x1b0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(ftoa_engine.o)
-                0x0000179c                __ftoa_engine
+                0x000017dc      0x1b0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(ftoa_engine.o)
+                0x000017dc                __ftoa_engine
  .text.avr-libc
-                0x0000194c       0x20 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(strrev.o)
-                0x0000194c                strrev
+                0x0000198c       0x20 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(strrev.o)
+                0x0000198c                strrev
  .text.libgcc.div
-                0x0000196c       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr4\libgcc.a(_udivmodhi4.o)
-                0x0000196c                __udivmodhi4
-                0x00001994                . = ALIGN (0x2)
+                0x000019ac       0x28 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr4\libgcc.a(_udivmodhi4.o)
+                0x000019ac                __udivmodhi4
+                0x000019d4                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00001994        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr4\libgcc.a(_exit.o)
-                0x00001994                _exit
-                0x00001994                exit
+ .fini9         0x000019d4        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr4\libgcc.a(_exit.o)
+                0x000019d4                _exit
+                0x000019d4                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -513,11 +515,11 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00001994        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr4\libgcc.a(_exit.o)
+ .fini0         0x000019d4        0x4 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/avr4\libgcc.a(_exit.o)
  *(.fini0)
-                0x00001998                _etext = .
+                0x000019d8                _etext = .
 
-.data           0x00800060       0xf8 load address 0x00001998
+.data           0x00800060       0xf8 load address 0x000019d8
                 0x00800060                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800060        0x0 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4/crtm8.o
@@ -600,8 +602,8 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
                 0x0080017b                Sekunden
  *(COMMON)
                 0x0080017c                PROVIDE (__bss_end, .)
-                0x00001998                __data_load_start = LOADADDR (.data)
-                0x00001a90                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x000019d8                __data_load_start = LOADADDR (.data)
+                0x00001ad0                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x0080017c        0x0
                 0x0080017c                PROVIDE (__noinit_start, .)
@@ -714,11 +716,11 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x33ae
+.debug_info     0x00000000     0x346b
  *(.debug_info)
- .debug_info    0x00000000     0x30fd Sonnenaufgangsweckerlampe_2_0.o
- .debug_info    0x000030fd      0x121 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
- .debug_info    0x0000321e      0x190 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
+ .debug_info    0x00000000     0x31ba Sonnenaufgangsweckerlampe_2_0.o
+ .debug_info    0x000031ba      0x121 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
+ .debug_info    0x000032db      0x190 c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev   0x00000000      0x522
@@ -727,11 +729,11 @@ LOAD c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr
  .debug_abbrev  0x00000389       0xad c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
  .debug_abbrev  0x00000436       0xec c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
 
-.debug_line     0x00000000      0xb67
+.debug_line     0x00000000      0xb6e
  *(.debug_line)
- .debug_line    0x00000000      0x842 Sonnenaufgangsweckerlampe_2_0.o
- .debug_line    0x00000842       0xab c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
- .debug_line    0x000008ed      0x27a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
+ .debug_line    0x00000000      0x849 Sonnenaufgangsweckerlampe_2_0.o
+ .debug_line    0x00000849       0xab c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtostrf.o)
+ .debug_line    0x000008f4      0x27a c:/program files (x86)/atmel/atmel toolchain/avr8 gcc/native/3.4.2.1002/avr8-gnu-toolchain/bin/../lib/gcc/avr/4.7.2/../../../../avr/lib/avr4\libc.a(dtoa_prf.o)
 
 .debug_frame    0x00000000      0x31c
  *(.debug_frame)
