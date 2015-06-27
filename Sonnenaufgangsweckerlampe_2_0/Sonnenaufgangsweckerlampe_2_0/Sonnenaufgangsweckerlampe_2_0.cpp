@@ -6,6 +6,20 @@
 #include "menue.h"
 #include "ausgabe.h"
 
+ISR(TIMER0_OVF_vect){
+	TCNT0 = 255-35;
+	if (!(PORTC & (1<<PC1)))
+	{
+		lichteinaus(3);
+		PORTC |= (1<<PC1);
+	}
+	else
+	{
+		lichteinaus(0);
+		PORTC &= ~(1<<PC1);
+	}
+}
+
 ISR(TIMER1_OVF_vect){
 	TCNT1H = 0b11110001;
 	TCNT1L = 0b11110000;
@@ -56,6 +70,8 @@ int main(void)
 				displayoff=0;
 				Wan=2;
 				lichteinaus(0);
+				TCCR0 = (0<<CS01) | (0<<CS00);	//Timer aus
+				PORTC &= ~(1<<PC1);				//Port fuer den Lautsprecher aus
 			}
 		}
 		else if (Wan==2)	//Abfrage, damit der Wecker nachdem man ihn in der ersten minute ausgeschaltet hat nicht wieder an geht

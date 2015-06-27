@@ -15,9 +15,9 @@ void zeitsetzen(){
 	Sekunden = 0;
 	WochenTag=6;
 	WStunden[0]=5;
-	WMinuten[0]=35;
+	WMinuten[0]=45;
 	WStunden[1]=7;
-	WMinuten[1]=35;
+	WMinuten[1]=45;
 	einst(4);
 	einst(0);
 	sekoffset=1;
@@ -37,9 +37,9 @@ void init(){
 	PORTD |= (1<<PD2) | (1<<PD3) | (1<<PD4);
 	
 	//Ausgänge
-	DDRC = (1<<PC5) | (1<<PC4) | (1<<PC3) | (1<<PC2);
-	PORTC |= (1<<PC5) | (1<<PC4) | (1<<PC3) | (1<<PC2);
-	PORTC &= ~((1<<PC5) | (1<<PC4) | (1<<PC3) | (1<<PC2));
+	DDRC = (1<<PC5) | (1<<PC4) | (1<<PC3) | (1<<PC2) | (1<<PC1);
+	PORTC |= (1<<PC5) | (1<<PC4) | (1<<PC3) | (1<<PC2)  | (1<<PC1);
+	PORTC &= ~((1<<PC5) | (1<<PC4) | (1<<PC3) | (1<<PC2)  | (1<<PC1));
 	
 	//LCD einstellen und erste Ausgabe
 	PORTC |= (1<PC2);
@@ -55,12 +55,14 @@ void init(){
 	//Timer 1 Einstelungen
 	TCNT1H = 0b11110001;
 	TCNT1L = 0b11110000;
-	TIMSK = (1<<TOIE1);
+	TIMSK |= (1<<TOIE1);
 	TCCR1B = (1<<CS10) | (1<<CS12);
 	
 	//Interupts aktivieren
 	sei();
 	
+	//Timer 0 fuer die Ton ausgabe Programmieren
+
 	//Wecker einschalten
 	Wan=0;
 	
@@ -250,6 +252,18 @@ uint8_t einst(uint8_t posit){
 			}
 			
 		}
+		Licht1a[0]=WMinuten[0]-10;
+		Licht1a[1]=WStunden[0];
+		if (Licht1a[0]>59)
+		{
+			Licht1a[0]+=60;
+			Licht1a[1]-=1;
+			if (Licht1a[1]>23)
+			{
+				Licht1a[1]+=24;
+			}
+		}
+		Wan=0;
 		return 0;
 		break;
 
@@ -292,6 +306,18 @@ uint8_t einst(uint8_t posit){
 			}
 			
 		}
+		Licht1b[0]=WMinuten[1]-10;
+		Licht1b[1]=WStunden[1];
+		if (Licht1b[0]>59)
+		{
+			Licht1b[0]+=60;
+			Licht1b[1]-=1;
+			if (Licht1b[1]>23)
+			{
+				Licht1b[1]+=24;
+			}
+		}
+		Wan=0;
 		return 0;
 		break;
 

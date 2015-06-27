@@ -84,7 +84,7 @@ void aus(uint8_t zeile, uint8_t pos){
 				case 4:
 					lcd_string("Guten Tag");
 					lcd_setcursor(0,2);
-					lcd_string("Wecker start V2.6");
+					lcd_string("Version 2.7");
 					
 					break;
 				
