@@ -38,9 +38,12 @@ void init(){
 	
 	//Ausgänge
 	DDRC = (1<<PC5) | (1<<PC4) | (1<<PC3) | (1<<PC2);
+	PORTC |= (1<<PC5) | (1<<PC4) | (1<<PC3) | (1<<PC2);
+	PORTC &= ~((1<<PC5) | (1<<PC4) | (1<<PC3) | (1<<PC2));
 	
 	//LCD einstellen und erste Ausgabe
 	PORTC |= (1<PC2);
+	_delay_ms(1);
 	lcd_init();
 	aus(1,4);
 	_delay_ms(1500);
@@ -86,7 +89,7 @@ void erhoehen(uint8_t *var, uint8_t obergrenze, uint8_t pos, const char *data){
 
 uint8_t einst(uint8_t posit){
 	uint8_t temp=0;
-	//abfrage wass eingestellt werden soll
+	//abfrage was eingestellt werden soll
 	switch (posit)
 	{
 	case 0:
@@ -146,96 +149,66 @@ uint8_t einst(uint8_t posit){
 		break;
 	case 1:
 		//Einstellen der Lampenstärke
-		//default=1
+		//default=3
 		temp = 0;
-		lcd_clear();
-		lcd_home();
-		lcd_string("Lampenstärke:");
-		aus(2,0);
-		itoa(lampenstaerke,Buffer,10);
-		lcd_string(Buffer);
+		
 		if(Sekunden!=sektemp){
 			zeit();
 		}
-		if(debounce(&PIND,2))
+		lampenstaerke++;
+		if (lampenstaerke>3)
 		{
-			lampenstaerke++;
-			lcd_clear();
-			lcd_home();
-			lcd_string("Lampenstärke:");
-			aus(2,0);
-			itoa(lampenstaerke,Buffer,10);
-			lcd_string(Buffer);
-			
-			if (lampenstaerke>=3)
-			{
-				lampenstaerke=1;
-			}
-			
+			lampenstaerke=1;
 		}
+		lcd_clear();
+		lcd_home();
+		lcd_string("Lampenstaerke:");
+		aus(2,0);
+		itoa(lampenstaerke,Buffer,10);
+		lcd_string(Buffer);
+		
 		return 0;
 		break;
 	case 2:
 		//Einstellen Sekundenoffset
 		//default =0
+
+		if(Sekunden!=sektemp){
+			zeit();
+		}
+		sekoffset++;
+		if (sekoffset>5)
+		{
+			sekoffset=-5;
+		}
 		lcd_clear();
 		lcd_home();
 		lcd_string("Sekundenoffset:");
 		aus(2,0);
 		itoa(sekoffset,Buffer,10);
 		lcd_string(Buffer);
-		if(Sekunden!=sektemp){
-			zeit();
-		}
-		if(debounce(&PIND,2))
-		{
-			sekoffset++;
-			lcd_clear();
-			lcd_home();
-			lcd_string("Sekundenoffset:");
-			aus(2,0);
-			itoa(sekoffset,Buffer,10);
-			lcd_string(Buffer);
-			
-			if (sekoffset>=5)
-			{
-				sekoffset=-5;
-			}
-				
-		}
 		
 		return 0;
 		break;
 	case 3:
 		//Einstellen Temperaturoffset
 		//default = 0;
-		lcd_clear();
-		lcd_home();
-		lcd_string("Temperaturoffset:");
-		aus(2,0);
-		itoa(tempoffset,Buffer,10);
-		lcd_string(Buffer);
 		
 		if(Sekunden!=sektemp){
 			zeit();
 		}
-		if(debounce(&PIND,2))
-		{
 			tempoffset++;
+			if (tempoffset>10)
+			{
+				tempoffset=-10;
+			}
 			lcd_clear();
 			lcd_home();
 			lcd_string("Temperaturoffset:");
 			aus(2,0);
 			itoa(tempoffset,Buffer,10);
 			lcd_string(Buffer);
-			
-			if (tempoffset>=10)
-			{
-				tempoffset=-10;
-			}
-			
-		}
-		
+								
 		return 0;
 		break;
 	case 4: //Wecker einstellen

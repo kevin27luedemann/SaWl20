@@ -34,7 +34,7 @@ uint8_t sektemp=0;
 double tempera;
 int8_t sekoffset=0;
 int8_t tempoffset = 2;
-uint8_t lampenstaerke = 1;
+uint8_t lampenstaerke = 3;
 char Buffer[20];
 uint8_t displayoff = 0;
 bool displaystat = true;
@@ -69,11 +69,11 @@ inline uint8_t debounce(volatile uint8_t *port, uint8_t pin)
 		/* Pin wurde auf Masse gezogen, 100ms warten   */
 		_delay_ms(50);   // Maximalwert des Parameters an _delay_ms
 		_delay_ms(10);   // beachten, vgl. Dokumentation der avr-libc
-		if ( !(*port & (1 << pin)) )
+		if ( (*port & (1 << pin)) )
 		{
 			/* Anwender Zeit zum Loslassen des Tasters geben */
-			//_delay_ms(50);
-			//_delay_ms(50);
+			_delay_ms(50);
+			_delay_ms(10);
 			return 1;
 		}
 	}

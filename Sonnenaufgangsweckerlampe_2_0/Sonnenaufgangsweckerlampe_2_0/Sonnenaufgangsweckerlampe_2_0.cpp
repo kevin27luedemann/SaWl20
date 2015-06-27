@@ -23,25 +23,64 @@ int main(void)
 			zeit();
 			if (displaystat)
 			{
-				aus(1,3);
-				aus(2,1);
-				displayoff++;
+				aus(1,3);	//obere Zeile
+				aus(2,1);	//untere zeile
+				if (Wan!=1)
+				{
+					//Aussetzen, des Ausschalten, da keine moeglichkeit das Display wirklich auszuschalten
+					//displayoff++;
+				}
+				else if (!displaystat && Wan ==1)
+				{
+					//Display wieder anschalten, falls noch nicht angeschaltet
+					PORTC |= (1<<PC2); //display einsschalten und neue anzeige starten
+					lcd_init();
+					aus(1,3);
+					aus(2,1);
+					displaystat=true;
+				}
 			}
 			if (displayoff>=120)
 			{
 				displaystat=false;
 				displayoff=0;
+				lcd_clear();
 				PORTC &= ~(1<<PC2); //Display ausschalten
 			}
 			
 		}
-		if(debounce(&PIND,2))
+		if (Wan==1)
 		{
-			Wan=0;
-			lichteinaus(0);
+			if(debounce(&PIND,2))
+			{
+				displayoff=0;
+				Wan=2;
+				lichteinaus(0);
+			}
 		}
+		else if (Wan==2)	//Abfrage, damit der Wecker nachdem man ihn in der ersten minute ausgeschaltet hat nicht wieder an geht
+		{
+			if (WochenTag!=0 && WochenTag!=6)
+			{
+				if(Stunden==WStunden[0]){
+					if(Minuten==WMinuten[0]+1){
+						Wan = 0;
+					}
+				}
+			}
+			else
+			{
+				if(Stunden==WStunden[1]){
+					if(Minuten==WMinuten[1]+1){
+						Wan = 0;
+					}
+				}
+			}
+		}
+		//Display einschalten bzw. das menue oeffnen
 		if (debounce(&PIND,PD4))
 		{
+			displayoff=0;
 			if (!displaystat)
 			{
 				PORTC |= (1<<PC2); //display einsschalten und neue anzeige starten
@@ -53,34 +92,54 @@ int main(void)
 			else
 			{
 				menu();
-				aus(1,3);
+				aus(1,3);	//Ausgabe des Display starten
 				aus(2,1);
 			}
 			
 		}
+		//Taster fuer die Pos pruefen, um die Lampen einzuschalten
 		if (debounce(&PIND,PD3))
 		{
+			displayoff=0;
 			switch (lampenstaerke)
 			{
 				case 1:
-					lichteinaus(1);
+				if ( PORTC & (1<<PC5) )
+				{
+					lichteinaus(0);	//Licht aus, wenn Licht an
+				}
+				else
+				{
+					lichteinaus(1); //nur erste Lampe
+				}
 					break;
 					
 				case 2:
-					lichteinaus(5);
+				if ( PORTC & (1<<PC5) )
+				{
+					lichteinaus(0);	//Licht aus, wenn Licht an
+				}
+				else
+				{
+					lichteinaus(5); //nur erste Lampe
+				}
 					break;
 					
 				case 3:
-					lichteinaus(4);
+				if ( PORTC & (1<<PC5) )
+				{
+					lichteinaus(0);	//Licht aus, wenn Licht an
+				}
+				else
+				{
+					lichteinaus(4); //nur erste Lampe
+				}
 					break;
 					
 				default:
 					break;
 			}
-			if ( PORTC& (1<<PC3) )
-			{
-				lichteinaus(0);
-			}
+			
 		}
 	}
 	

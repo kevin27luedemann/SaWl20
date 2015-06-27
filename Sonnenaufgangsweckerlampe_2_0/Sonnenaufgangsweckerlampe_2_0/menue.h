@@ -66,11 +66,11 @@ uint8_t menu(){
 			
 			case 2:
 				//Lampe einstellen
-				//Jetzt noch nicht implementiert
 				lcd_clear();
-				aus(1,2);
+				lcd_string("Lampenstaerke:");
 				aus(2,0);
-				lcd_string("Lampenstärke:");
+				itoa(lampenstaerke,Buffer,10);
+				lcd_string(Buffer);
 				while (!debounce(&PIND,PD3))
 				{
 					if(Sekunden!=sektemp){
@@ -79,7 +79,7 @@ uint8_t menu(){
 					if (debounce(&PIND,PD2))
 					{
 						einst(1);
-						lcd_string("Lampenstärke");
+						//lcd_string("Lampenstaerke");
 					}
 					if (debounce(&PIND,PD4))
 					{
@@ -181,7 +181,14 @@ uint8_t menu(){
 					{
 						displaystat=false;
 						displayoff=0;
+						lcd_clear();
 						PORTC &= ~(1<<PC2); //Display ausschalten
+						/*
+						displaystat=false;
+						displayoff=0;
+						lcd_clear();
+						PORTC &= ~(1<<PC2); //Display ausschalten
+						*/
 						return 1;
 					}
 					if (debounce(&PIND,PD4))

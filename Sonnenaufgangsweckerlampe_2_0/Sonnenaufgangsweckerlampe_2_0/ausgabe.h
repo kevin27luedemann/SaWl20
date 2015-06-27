@@ -84,7 +84,7 @@ void aus(uint8_t zeile, uint8_t pos){
 				case 4:
 					lcd_string("Guten Tag");
 					lcd_setcursor(0,2);
-					lcd_string("Wecker start");
+					lcd_string("Wecker start V2.6");
 					
 					break;
 				
@@ -135,16 +135,28 @@ void aus(uint8_t zeile, uint8_t pos){
 						lcd_data(0b11011111); //°
 						lcd_data(0b01000011); //C
 						
+						//Ausgabe, ob der Wecker bzw das Licht an ist
+						if (Wan==1)
+						{
+							lcd_setcursor(12,1);
+							lcd_string("We");
+						}
+						else if (PORTC & (1<<PC5))
+						{
+							lcd_setcursor(12,1);
+							lcd_string("Li");
+						}
 						break;
 				}
 			break;
-	}
+		}
+
 }
 
 void zeitaus(uint8_t pos){
 	switch (pos)
 	{
-		case 0:
+		case 0:	//keine Sekunden
 			itoa( Stunden, Buffer, 10 );
 			lcd_string(Buffer);
 			lcd_string(":");
@@ -153,7 +165,7 @@ void zeitaus(uint8_t pos){
 			
 			break;
 		
-		case 1:
+		case 1:	//mit Sekunden
 			itoa( Stunden, Buffer, 10 );
 			lcd_string(Buffer);
 			lcd_string(":");

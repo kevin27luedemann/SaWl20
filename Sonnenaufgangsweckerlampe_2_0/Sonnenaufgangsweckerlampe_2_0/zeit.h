@@ -60,27 +60,25 @@ void lichteinaus(uint8_t pos){
 		default:
 			break;
 	}
-	
-	
-	
-
-
 }
 
 
 void temperatur(){
+
 	ADC_Read(0);
 	uint16_t adcval = ADC_Read(0);
 	double span= (double)adcval*(5.0/1024.0);
 	double widerst = ((double)span*2700.0)/((double)(5-(double)span));
 	tempera = (100.0/1387.0)*widerst+(50+tempoffset-(100.0/1387.0)*2417.0);
+	tempera	= 0;
 }
 
 void zeit(){
 	sektemp=Sekunden;
 	if (Sekunden >= 60){
 		//Temperatur bestimmen
-		temperatur();
+		//Da auf der Platine nicht eingebaut, wird es momentn ausgenommen
+//		temperatur();
 		
 		Sekunden = 0;
 		Minuten++;
