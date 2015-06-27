@@ -63,18 +63,18 @@ int main(void)
 			}
 			
 		}
-		if (Wan==1)
+		if (Wan==1 || Wan==2)
 		{
 			if(debounce(&PIND,2))
 			{
 				displayoff=0;
-				Wan=2;
+				Wan=3;
 				lichteinaus(0);
 				TCCR0 = (0<<CS01) | (0<<CS00);	//Timer aus
 				PORTC &= ~(1<<PC1);				//Port fuer den Lautsprecher aus
 			}
 		}
-		else if (Wan==2)	//Abfrage, damit der Wecker nachdem man ihn in der ersten minute ausgeschaltet hat nicht wieder an geht
+		else if (Wan==3)	//Abfrage, damit der Wecker nachdem man ihn in der ersten minute ausgeschaltet hat nicht wieder an geht
 		{
 			if (WochenTag!=0 && WochenTag!=6)
 			{

@@ -12,7 +12,7 @@
 void Wecker(){
 	if (WochenTag!=0 && WochenTag!=6)
 	{
-		if (Stunden==Licht1a[1]){
+		if (Wan == 0 && Stunden==Licht1a[1]){
 			if (Minuten==Licht1a[0]){
 				Wan = 1;
 				lichteinaus(4);
@@ -22,6 +22,7 @@ void Wecker(){
 		{
 			if (Minuten==WMinuten[0])
 			{
+				Wan = 2;
 				TCNT0 = (255-35);
 				TIMSK |= (1<<TOIE0);
 				TCCR0 = (1<<CS01) | (1<<CS00);	
@@ -30,7 +31,7 @@ void Wecker(){
 	}
 	else
 	{
-		if (Stunden==Licht1b[1]){
+		if (Wan == 0 && Stunden==Licht1b[1]){
 			if (Minuten==Licht1b[0]){
 				Wan = 1;
 				lichteinaus(4);
@@ -40,6 +41,7 @@ void Wecker(){
 		{
 			if (Minuten==WMinuten[1])
 			{
+				Wan = 2;
 				TCNT0 = (255-35);
 				TIMSK |= (1<<TOIE0);
 				TCCR0 = (1<<CS01) | (1<<CS00);	
@@ -121,7 +123,7 @@ void zeit(){
 		}
 	}
 	
-	if(Wan==0)
+	if(Wan!=3)
 	{
 		Wecker();
 	}
