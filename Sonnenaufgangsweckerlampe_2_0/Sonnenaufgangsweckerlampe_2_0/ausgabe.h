@@ -84,7 +84,7 @@ void aus(uint8_t zeile, uint8_t pos){
 				case 4:
 					lcd_string("Guten Tag");
 					lcd_setcursor(0,2);
-					lcd_string("Version 2.7");
+					lcd_string("Version 2.8");
 					
 					break;
 				
@@ -129,14 +129,15 @@ void aus(uint8_t zeile, uint8_t pos){
 						break;
 						
 					case 1:
-						//Temperatur
-						dtostrf(tempera,2,2,Buffer);
+						//Temperatur nur als Integer anzeigen, da nicht genau genug und Speicher optimierung
+						itoa((int8_t)tempera,Buffer,10);
+						//dtostrf(tempera,2,2,Buffer);
 						lcd_string(Buffer);
 						lcd_data(0b11011111); //°
 						lcd_data(0b01000011); //C
 						
 						//Ausgabe, ob der Wecker bzw das Licht an ist
-						if (Wan==1)
+						if (Wan==1 || Wan==2)
 						{
 							lcd_setcursor(12,1);
 							lcd_string("We");

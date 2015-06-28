@@ -86,13 +86,14 @@ void lichteinaus(uint8_t pos){
 void temperatur(){
 
 	ADC_Read(0);
-	uint16_t adcval1 = ADC_Read(0);
-	uint16_t adcval2 = ADC_Read(0);
-	uint16_t adcval =(uint16_t) (adcval1+adcval2)/2.0;
-	float span= (float)adcval*(5.0/1023.0);
-	float widerst = ((float)span*3300.0)/((float)(5-(float)span));	//Widerstand hat 3,3kOhm
-	tempera = (100.0/1387.0)*widerst+(50+tempoffset-(100.0/1387.0)*2417.0)-17.86; //-17,86 gemessen, nicht analytisch bestätigt
-//	tempera -= 17.86;
+	volatile uint16_t adcval =(uint16_t) (ADC_Read(0)+ADC_Read(0))/2.0;
+	volatile float span= (float)adcval*(5.0/1023.0);
+	volatile float widerst = ((float)span*3300.0)/((float)(5-(float)span));	//Widerstand hat 3,3kOhm
+	tempera = (100.0/1387.0)*widerst+(50+tempoffset-(100.0/1387.0)*2417.0);//-18; //-17,86 gemessen, nicht analytisch bestätigt
+	if ((int8_t)(tempera*10)%10>=5) //richtiges Runden auf die erste Nachkommastelle
+	{
+		tempera+=1;
+	}
 }
 
 void zeit(){

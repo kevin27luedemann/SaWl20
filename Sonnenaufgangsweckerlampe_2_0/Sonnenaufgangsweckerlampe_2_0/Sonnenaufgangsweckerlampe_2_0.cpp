@@ -93,8 +93,8 @@ int main(void)
 				}
 			}
 		}
-		//Display einschalten bzw. das menue oeffnen
-		if (debounce(&PIND,PD4))
+		//Display einschalten bzw. das menue oeffnen, nur wenn die Weckfunktion nicht aktiv ist
+		if (debounce(&PIND,PD4) && Wan!=1 && Wan!=2)
 		{
 			displayoff=0;
 			if (!displaystat)
@@ -113,8 +113,8 @@ int main(void)
 			}
 			
 		}
-		//Taster fuer die Pos pruefen, um die Lampen einzuschalten
-		if (debounce(&PIND,PD3))
+		//Taster fuer die Pos pruefen, um die Lampen einzuschalten, aber nur, wenn der Wecker nicht läuft
+		if (debounce(&PIND,PD3) && Wan!=1 && Wan!=2)
 		{
 			displayoff=0;
 			switch (lampenstaerke)

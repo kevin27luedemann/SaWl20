@@ -42,8 +42,8 @@ void init(){
 	PORTC &= ~((1<<PC5) | (1<<PC4) | (1<<PC3) | (1<<PC2)  | (1<<PC1));
 	
 	//LCD einstellen und erste Ausgabe
-	PORTC |= (1<PC2);
-	_delay_ms(1);
+//	PORTC |= (1<PC2);
+//	_delay_ms(1);
 	lcd_init();
 	aus(1,4);
 	_delay_ms(1500);
@@ -61,7 +61,7 @@ void init(){
 	//Interupts aktivieren
 	sei();
 	
-	//Timer 0 fuer die Ton ausgabe Programmieren
+	//Timer 0 fuer die Ton ausgabe wird beim Einschalten eingetsellt und muss nicht jetzt eingestellt werden
 
 	//Wecker einschalten
 	Wan=0;
@@ -133,7 +133,7 @@ uint8_t einst(uint8_t posit){
 			switch (temp)
 			{
 			case 0:
-				erhoehen(&Stunden,60,6,NAME(Stunden));
+				erhoehen(&Stunden,24,6,NAME(Stunden));
 				break;
 			case 1:
 				erhoehen(&Minuten,60,6,NAME(Minuten));
