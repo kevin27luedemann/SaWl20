@@ -19,8 +19,8 @@ void zeitsetzen(){
 	WStunden[1]=7;
 	WMinuten[1]=45;
 	einst(4);
+	einst(5);
 	einst(0);
-	sekoffset=1;
 }
 
 void init(){
@@ -100,7 +100,7 @@ uint8_t einst(uint8_t posit){
 		//diese werden auf 0 gesetzt
 		aus(1,6);
 		aus(2,0);
-		lcd_string(NAME(Stunden));
+		lcd_string(Stundenstring);
 		while(temp<3)
 		{
 			if(debounce(&PIND,3))
@@ -112,13 +112,13 @@ uint8_t einst(uint8_t posit){
 				switch (temp)
 				{
 					case 0:
-						lcd_string(NAME(Stunden));
+						lcd_string(Stundenstring);
 						break;
 					case 1:
-						lcd_string(NAME(Minuten));
+						lcd_string(Minutenstring);
 						break;
 					case 2:
-						lcd_string(NAME(WochenTag));
+						lcd_string(WochenTagstring);
 						break;
 					default:
 						break;
@@ -133,14 +133,14 @@ uint8_t einst(uint8_t posit){
 			switch (temp)
 			{
 			case 0:
-				erhoehen(&Stunden,24,6,NAME(Stunden));
+				erhoehen(&Stunden,24,6,Stundenstring);
 				break;
 			case 1:
-				erhoehen(&Minuten,60,6,NAME(Minuten));
+				erhoehen(&Minuten,60,6,Minutenstring);
 				break;
 			case 2:
 				//nur jetzt WochenTag
-				erhoehen(&WochenTag,7,6,NAME(WochenTag));
+				erhoehen(&WochenTag,7,6,WochenTagstring);
 				break;
 			default:
 				break;
@@ -164,7 +164,7 @@ uint8_t einst(uint8_t posit){
 		}
 		lcd_clear();
 		lcd_home();
-		lcd_string("Lampenstaerke:");
+		lcd_string(lampenstaerkestring);
 		aus(2,0);
 		itoa(lampenstaerke,Buffer,10);
 		lcd_string(Buffer);
@@ -173,19 +173,19 @@ uint8_t einst(uint8_t posit){
 		break;
 	case 2:
 		//Einstellen Sekundenoffset
-		//default =0
+		//default =-2
 
 		if(Sekunden!=sektemp){
 			zeit();
 		}
 		sekoffset++;
-		if (sekoffset>5)
+		if (sekoffset>10)
 		{
-			sekoffset=-5;
+			sekoffset=-10;
 		}
 		lcd_clear();
 		lcd_home();
-		lcd_string("Sekundenoffset:");
+		lcd_string(sekoffsetstring);
 		aus(2,0);
 		itoa(sekoffset,Buffer,10);
 		lcd_string(Buffer);
@@ -206,7 +206,7 @@ uint8_t einst(uint8_t posit){
 			}
 			lcd_clear();
 			lcd_home();
-			lcd_string("Temperaturoffset:");
+			lcd_string(tempoffsetstring);
 			aus(2,0);
 			itoa(tempoffset,Buffer,10);
 			lcd_string(Buffer);
@@ -217,7 +217,7 @@ uint8_t einst(uint8_t posit){
 		temp = 0;
 		aus(1,5);
 		aus(2,0);
-		lcd_string(NAME(WStunden[0]));
+		lcd_string(WStunden0string);
 		while (temp<2)
 		{
 			if (Sekunden!=sektemp)
@@ -232,10 +232,10 @@ uint8_t einst(uint8_t posit){
 				switch (temp)
 				{
 					case 0:
-						lcd_string(NAME(WStunden[0]));
+						lcd_string(WStunden0string);
 						break;
 					case 1:
-						lcd_string(NAME(WMinuten[0]));
+						lcd_string(WMinuten0string);
 						break;
 					default:
 						break;
@@ -244,15 +244,16 @@ uint8_t einst(uint8_t posit){
 			switch (temp)
 			{
 				case 0:
-					erhoehen(&WStunden[0],24,5,NAME(WStunden[0]));
+					erhoehen(&WStunden[0],24,5,WStunden0string);
 					break;
 				case 1:
-					erhoehen(&WMinuten[0],60,5,NAME(WMinuten[0]));
+					erhoehen(&WMinuten[0],60,5,WMinuten0string);
 					break;
 			}
 			
 		}
-		Licht1a[0]=WMinuten[0]-10;
+		//erste Lichteinstellung volle verzoegerung
+		Licht1a[0]=WMinuten[0]-weckverzoegerung;
 		Licht1a[1]=WStunden[0];
 		if (Licht1a[0]>59)
 		{
@@ -263,6 +264,18 @@ uint8_t einst(uint8_t posit){
 				Licht1a[1]+=24;
 			}
 		}
+		//zweite Lichteinstellung halbe verzoegerung
+		Licht2a[0]=WMinuten[0]-weckverzoegerung/2;
+		Licht2a[1]=WStunden[0];
+		if (Licht2a[0]>59)
+		{
+			Licht2a[0]+=60;
+			Licht2a[1]-=1;
+			if (Licht2a[1]>23)
+			{
+				Licht2a[1]+=24;
+			}
+		}
 		Wan=0;
 		return 0;
 		break;
@@ -271,7 +284,7 @@ uint8_t einst(uint8_t posit){
 		temp = 0;
 		aus(1,7);
 		aus(2,0);
-		lcd_string(NAME(WStunden[1]));
+		lcd_string(WStunden1string);
 		while (temp<2)
 		{
 			if (Sekunden!=sektemp)
@@ -286,10 +299,10 @@ uint8_t einst(uint8_t posit){
 				switch (temp)
 				{
 					case 0:
-					lcd_string(NAME(WStunden[1]));
+					lcd_string(WStunden1string);
 					break;
 					case 1:
-					lcd_string(NAME(WMinuten[1]));
+					lcd_string(WMinuten1string);
 					break;
 					default:
 					break;
@@ -298,15 +311,16 @@ uint8_t einst(uint8_t posit){
 			switch (temp)
 			{
 				case 0:
-				erhoehen(&WStunden[1],24,7,NAME(WStunden[1]));
+				erhoehen(&WStunden[1],24,7,WStunden1string);
 				break;
 				case 1:
-				erhoehen(&WMinuten[1],60,7,NAME(WMinuten[1]));
+				erhoehen(&WMinuten[1],60,7,WMinuten1string);
 				break;
 			}
 			
 		}
-		Licht1b[0]=WMinuten[1]-10;
+		//Lichteinstellung volle verzoegerung wochenende
+		Licht1b[0]=WMinuten[1]-weckverzoegerung;
 		Licht1b[1]=WStunden[1];
 		if (Licht1b[0]>59)
 		{
@@ -317,7 +331,40 @@ uint8_t einst(uint8_t posit){
 				Licht1b[1]+=24;
 			}
 		}
+		//zweite Lichteinstellung halbe verzoegerung
+		Licht2b[0]=WMinuten[1]-weckverzoegerung/2;
+		Licht2b[1]=WStunden[1];
+		if (Licht2b[0]>59)
+		{
+			Licht2b[0]+=60;
+			Licht2b[1]-=1;
+			if (Licht2b[1]>23)
+			{
+				Licht2b[1]+=24;
+			}
+		}
 		Wan=0;
+		return 0;
+		break;
+
+	case 6:
+	//Einstellen Weckerberzoegerung
+	//default = 20;
+	
+		if(Sekunden!=sektemp){
+			zeit();
+		}
+		weckverzoegerung++;
+		if (weckverzoegerung>60)
+		{
+			weckverzoegerung=10;
+		}
+		lcd_clear();
+		lcd_home();
+		lcd_string(weckverzoegerungstring);
+		aus(2,0);
+		itoa(weckverzoegerung,Buffer,10);
+		lcd_string(Buffer);
 		return 0;
 		break;
 

@@ -10,11 +10,19 @@
 #define ZEIT_H_
 
 void Wecker(){
-	if (WochenTag!=0 && WochenTag!=6)
+	if (WochenTag!=0 && WochenTag!=6 && Werktagsweckeran==true)
 	{
 		if (Wan == 0 && Stunden==Licht1a[1]){
 			if (Minuten==Licht1a[0]){
 				Wan = 1;
+				lichteinaus(6);
+			}
+		}
+		//zweite Lichtstaerke fuer danftes aufwachen zur halben Weckzeit
+		if (Wan == 1 && Stunden==Licht2a[1]){
+			if (Minuten==Licht2a[0]){
+				Wan = 1;
+				lichteinaus(0);
 				lichteinaus(4);
 			}
 		}
@@ -29,11 +37,20 @@ void Wecker(){
 			}
 		}
 	}
-	else
+	else if ((WochenTag==0 || WochenTag==6) && Wochenendeweckeran==true)
 	{
+		//erste Lichteinschaltung
 		if (Wan == 0 && Stunden==Licht1b[1]){
 			if (Minuten==Licht1b[0]){
 				Wan = 1;
+				lichteinaus(6);
+			}
+		}
+		//zweite Lichteinschaltung
+		if (Wan == 1 && Stunden==Licht2b[1]){
+			if (Minuten==Licht2b[0]){
+				Wan = 1;
+				lichteinaus(0);
 				lichteinaus(4);
 			}
 		}
@@ -76,6 +93,9 @@ void lichteinaus(uint8_t pos){
 		case 5:
 			PORTC |= ((1<<PC5) | (1<<PC4));
 			break;
+		case 6:
+			PORTC |= ((1<<PC3) | (1<<PC4));
+			break;
 		
 		default:
 			break;
@@ -98,9 +118,8 @@ void temperatur(){
 
 void zeit(){
 	sektemp=Sekunden;
-	if (Sekunden >= 60){
+	if (Sekunden >= 60 && Sekunden <=200){
 		//Temperatur bestimmen
-		//Da auf der Platine nicht eingebaut, wird es momentn ausgenommen
 		temperatur();
 		
 		Sekunden = 0;
@@ -115,12 +134,12 @@ void zeit(){
 			if (WochenTag>=7)
 			{
 				WochenTag=0;
+				Sekunden += sekoffset; //Ausgleich der VerlustSekunden gemessen bei 2 pro Woche
 			}
 			if (Wan!=0)
 			{
 				Wan=0;
 			}
-			Sekunden += sekoffset; //Ausgleich der VerlustSekunden
 		}
 	}
 	

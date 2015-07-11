@@ -82,15 +82,15 @@ void aus(uint8_t zeile, uint8_t pos){
 					break;
 					
 				case 4:
-					lcd_string("Guten Tag");
+					lcd_string(begruesung);
 					lcd_setcursor(0,2);
-					lcd_string("Version 2.8");
+					lcd_string(versionstring);
 					
 					break;
 				
 				case 5:
 					//Wecker Werktags
-					lcd_string("Weckzeit: ");
+					lcd_string(Weckzeitstring);
 					itoa(WStunden[0],Buffer,10);
 					lcd_string(Buffer);
 					lcd_string(":");
@@ -108,7 +108,7 @@ void aus(uint8_t zeile, uint8_t pos){
 					
 				case 7:
 					//Wecker Wochenends
-					lcd_string("Weckzeit: ");
+					lcd_string(Weckzeitstring);
 					itoa(WStunden[1],Buffer,10);
 					lcd_string(Buffer);
 					lcd_string(":");

@@ -20,7 +20,7 @@ uint8_t menu(){
 				lcd_clear();
 				aus(1,5);
 				aus(2,0);
-				lcd_string("Werktags");
+				lcd_string(WeckerWEstring);
 				posit = posit + 1;
 				while(!debounce(&PIND,PD3))
 				{
@@ -31,7 +31,7 @@ uint8_t menu(){
 					if (debounce(&PIND,PD2))
 					{
 						einst(4);
-						lcd_string("Werktags");
+						lcd_string(WeckerWEstring);
 					}
 					if (debounce(&PIND,PD4))
 					{
@@ -40,12 +40,12 @@ uint8_t menu(){
 				}
 				break;
 			
-			case 1:
+			case 2:
 			//Weckzeit anzeige und einstellungen am Wochenende
 				lcd_clear();
 				aus(1,7);
 				aus(2,0);
-				lcd_string("Wohenende");
+				lcd_string(WeckerWOstring);
 				while (!debounce(&PIND,PD3))
 				{
 					if(Sekunden!=sektemp){
@@ -54,7 +54,7 @@ uint8_t menu(){
 					if (debounce(&PIND,PD2))
 					{
 						einst(5);
-						lcd_string("Wohenende");
+						lcd_string(WeckerWOstring);
 					}
 					if (debounce(&PIND,PD4))
 					{
@@ -64,10 +64,10 @@ uint8_t menu(){
 				posit++;
 				break;
 			
-			case 2:
+			case 8:
 				//Lampe einstellen
 				lcd_clear();
-				lcd_string("Lampenstaerke:");
+				lcd_string(lampenstaerkestring);
 				aus(2,0);
 				itoa(lampenstaerke,Buffer,10);
 				lcd_string(Buffer);
@@ -79,7 +79,6 @@ uint8_t menu(){
 					if (debounce(&PIND,PD2))
 					{
 						einst(1);
-						//lcd_string("Lampenstaerke");
 					}
 					if (debounce(&PIND,PD4))
 					{
@@ -89,12 +88,12 @@ uint8_t menu(){
 				posit++;
 				break;
 			
-			case 3:
+			case 5:
 				//Zeit einstellen ohnen Sekunden
 				lcd_clear();
 				aus(1,3);
 				aus(2,0);
-				lcd_string("Zeit");
+				lcd_string(Zeitstring);
 				while (!debounce(&PIND,PD3))
 				{
 					if(Sekunden!=sektemp){
@@ -103,7 +102,7 @@ uint8_t menu(){
 					if (debounce(&PIND,PD2))
 					{
 						einst(0);
-						lcd_string("Zeit");
+						lcd_string(Zeitstring);
 					}
 					if (debounce(&PIND,PD4))
 					{
@@ -113,11 +112,11 @@ uint8_t menu(){
 				posit++;
 				break;
 				
-			case 4:
+			case 6:
 				//Sekundenoffset einstellen
 				lcd_clear();
 				lcd_home();
-				lcd_string("Sekundenoffset:");
+				lcd_string(sekoffsetstring);
 				aus(2,0);
 				itoa(sekoffset,Buffer,10);
 				lcd_string(Buffer);
@@ -138,11 +137,11 @@ uint8_t menu(){
 				posit++;
 				break;
 				
-			case 5:
+			case 7:
 				//Temperaturoffset einstellen
 				lcd_clear();
 				lcd_home();
-				lcd_string("Temperaturoffset:");
+				lcd_string(tempoffsetstring);
 				aus(2,0);
 				itoa(tempoffset,Buffer,10);
 				lcd_string(Buffer);
@@ -165,6 +164,100 @@ uint8_t menu(){
 				posit++;
 				break;
 				
+			case 4:
+				//Weckverzoegerung einstellen
+				lcd_clear();
+				lcd_home();
+				lcd_string(weckverzoegerungstring);
+				aus(2,0);
+				itoa(weckverzoegerung,Buffer,10);
+				lcd_string(Buffer);
+				while (!debounce(&PIND,PD3))
+				{
+					if(Sekunden!=sektemp){
+						zeit();
+					}
+					if (debounce(&PIND,PD2))
+					{
+						einst(6);
+					}
+					if (debounce(&PIND,PD4))
+					{
+						return 1;
+					}
+				}
+				posit++;
+				break;
+			case 1:
+				//Werktagswecker ausschalten
+				lcd_clear();
+				lcd_home();
+				lcd_string(Werktagsweckeranstring);
+				aus(2,0);
+				itoa(Werktagsweckeran,Buffer,10);
+				lcd_string(Buffer);
+				while (!debounce(&PIND,PD3))
+				{
+					if(Sekunden!=sektemp){
+						zeit();
+					}
+					if (debounce(&PIND,PD2))
+					{
+						if (Werktagsweckeran)
+						{
+							Werktagsweckeran=false;
+						}
+						else
+						{
+							Werktagsweckeran=true;
+						}
+						aus(2,0);
+						itoa(Werktagsweckeran,Buffer,10);
+						lcd_string(Buffer);
+					}
+					if (debounce(&PIND,PD4))
+					{
+						return 1;
+					}
+				}
+				posit++;
+				break;
+			
+			case 3:
+			//Werktagswecker ausschalten
+			lcd_clear();
+			lcd_home();
+			lcd_string(Wochenendeweckeranstring);
+			aus(2,0);
+			itoa(Wochenendeweckeran,Buffer,10);
+			lcd_string(Buffer);
+			while (!debounce(&PIND,PD3))
+			{
+				if(Sekunden!=sektemp){
+					zeit();
+				}
+				if (debounce(&PIND,PD2))
+				{
+					if (Wochenendeweckeran)
+					{
+						Wochenendeweckeran=false;
+					}
+					else
+					{
+						Wochenendeweckeran=true;
+					}
+					aus(2,0);
+					itoa(Wochenendeweckeran,Buffer,10);
+					lcd_string(Buffer);
+				}
+				if (debounce(&PIND,PD4))
+				{
+					return 1;
+				}
+			}
+			posit++;
+			break;
+				/*
 			case 6:
 				//Display ausschalten
 				lcd_clear();
@@ -183,12 +276,6 @@ uint8_t menu(){
 						displayoff=0;
 						lcd_clear();
 						PORTC &= ~(1<<PC2); //Display ausschalten
-						/*
-						displaystat=false;
-						displayoff=0;
-						lcd_clear();
-						PORTC &= ~(1<<PC2); //Display ausschalten
-						*/
 						return 1;
 					}
 					if (debounce(&PIND,PD4))
@@ -198,7 +285,7 @@ uint8_t menu(){
 				}
 				posit++;
 				break;
-				
+				*/
 			
 			default:
 				posit=0;

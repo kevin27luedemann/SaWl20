@@ -33,14 +33,40 @@ uint8_t Licht2b[2] = {0,0};
 uint8_t Wan = 0;
 uint8_t sektemp=0;
 float tempera;
-int8_t sekoffset=0;
+int8_t sekoffset=-2;
 int8_t tempoffset = 0;
 uint8_t lampenstaerke = 3;
 char Buffer[20];
 uint8_t displayoff = 0;
 bool displaystat = true;
+uint8_t weckverzoegerung = 20;
+bool Wochenendeweckeran = true;
+bool Werktagsweckeran = true;
 
+
+//Strings um Speicher zu sparen
 #define NAME(x) #x
+const char lampenstaerkestring[] = "Lampenstaerke:";
+const char sekoffsetstring[] = "Sekundenoffset:";
+const char tempoffsetstring[] = "Temperaturoffset:";
+const char weckverzoegerungstring[] = "Weckerverzoege:";
+const char Werktagsweckeranstring[] = "Wecktagswe:";
+const char Wochenendeweckeranstring[] = "Wochenendswe:";
+const char Stundenstring[] = "Stunden";
+const char Minutenstring[] = "Minuten";
+const char WochenTagstring[] = "WochenTag";
+const char WStunden0string[] = "WStunden WE";
+const char WMinuten0string[] = "WMinuten WE";
+const char WStunden1string[] = "WStunden WO";
+const char WMinuten1string[] = "WMinuten WO";
+const char WeckerWEstring[] = "Werktags";
+const char WeckerWOstring[] = "Wohenende";
+const char Zeitstring[] = "Zeit";
+const char Weckzeitstring [] = "Weckzeit: ";
+const char begruesung[] = "Guten Tag";
+const char versionstring[] = "Version 2.9";
+
+
 
 //Funktionen
 void zeit();
