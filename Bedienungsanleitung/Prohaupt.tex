@@ -417,6 +417,17 @@ Die Sekunden, weden dierekt nach der Eingabe der Werktages auf null gesetz und d
 \section{Bedienungsanleitung}
 \label{sec:Bedienungsanleitung}
 
+\subsection{Beschreibung der Hardware}
+Die Hardware besteht aus dem Gehäuse mit den LEDs und der Hauptpaltine.
+Auf dem Deckel ist ein Display zur Zeitanzeige und Navigation durch das Menü vorhanden, sowie 3 Taster zu Steuerung.
+Ebenfalls ist ein kleiner Lautsprecher zur ausgabe eines Wecktons vorhanden.\\
+Die LEDs sind in Blöcken angeordnet.
+Die oberen 4 LEDs, die unteren mittleren 3 roten LEDs und die beiden äußeren LEDs in der unteren Reihe gehören jeils zu einem Block.\\
+Der linke Taster ist der "`+Taster"' zum erhöhen von Zahlenwerten und er "`Weckertaster"' zum auschalten des Weckers.
+Der mittlere Taster ist der "`Postionstaster"' zur Navigation durch die Menüpunkte der verschiedenen Menüs und zu dem noch der "`Lichttaster"' zum ein- und ausschalten des Lichts.
+Der rechte Taster ist der "`Menütaster"' mit diesem gelangt man aus und in das Hauptmenü.
+
+
 \subsection{Inbetriebnahme}
 \label{sec:inbetriebname}
 Sobald eine Spannungsquelle an den Wecker angeschlossen ist und dieser über den Schieberegler eingeschaltet wird, erscheint der Willkommenschirm.
@@ -432,7 +443,8 @@ Ist dies geschehen, wird der Wecker aktiviert und die Zeit kann eingestellt werd
 Bei der Einstellung der Zeit, wird genauso, wie bei den Weckzeiten vorgegangen.
 Zuerst wird die Stunde und dann die Minuten eingestellt.
 Anschließend wird der Werktag eingestellt und durch ein weiteren drücken auf dem "`Positionstaster"' die Sekunden auf null gestetzt.
-Jetzt nimmt der Wecker seinen eigentlichen betrieb auf.
+Jetzt nimmt der Wecker seinen eigentlichen betrieb auf.\\
+Ist der Wecker in aktiv und beginnt zu läuchten, so werden auf dem Hauptbildschirm in der oberen Zeile am Ende die Zeichen "`We"' eingeblendet.
 
 
 
@@ -477,25 +489,67 @@ Durch Wechsel der Einstellposition mit dem "`Postionstaster"' ohne die Zahlen zu
 Dies muss allerdings für den Werktags- und den Wochenendswecker durchgeführt werden.
 
 \subsection{Zeit einstellen}
+Um die Zeit einzustellen, öffnet man das Hauptmenü mit der "`Menütaste"' und navigiert mit der "`Positionstaste"' zum 6 Punkt.
+Die man gelangt nun über durch einen Druck auf die "`+Taste"' und das Einstelungsmenü für die Zeit.
+Hier kann jetzt nach und nach die Stunde, die Minute und der Werktag mithilfe der "`+Taste"' eingestellt werden.
+Um von einem Einstellungspunkt zum nächsten zu gelangen reicht ein Druck auf die "`Positionstaste"'.
+Nach Einstellung des Werktages und letzten Druck auf die "`Postionstaste"' werden die Sekunden auf null gestzt und die Zeit läuft mit der Aktuellen weiter.
+Man befindet sich nun wieder im Hauptmenü und kann dieses wieder mit einem Druck auf die "`Menütaste verlassen"'.
 
 
 \subsection{Sekundenoffset einstellen}
+Der Wecker hat einen gemessenen Sekundenfehler von etwa 2 Sekundne pro Woche.
+Dies wird durch das zurücksetzten der Zeit von 2 Sekunden am ende jeder Woche behoben.
+Dies geschieht jeden Samstag um exakt 0 Uhr.
+Dieser Offset kann über das Menü angepasst werden.
+Standartmaßig ist ein Offset von -2 engegeben.
+Diese Zahl wird jeden Samstag auf die Sekundenzahl draufgerechnet.
+Sprich in diesem Fall abgezogen.\\
+Die Einstellung dieses Offset ist Menüpunkt 7.
+Auch hier wird durch betätigen des "`+Tasters"' die Zahl um eins erhöht.
+Nach jedem erhöhen, kann weiter durch das Hauptmenü navigiert werden, da dieses nicht erlassen wird.
+Es ist möglich ein Sekundenoffset von $\pm5$ Sekunden einzustellen.
 
 
 \subsection{Lampe verwenden}
-
-
-\subsection{Temperaturoffset einstellen}
-
+Um die Lampe zu verwenden, wird auf dem Hauptbildschirm die "`Lampetaste"' gedrückt.
+Die Lampen gehen sofort an und können auf die gleiche Weise ausgeschaltet werden.
+Um zu unterscheiden, ob die Lampe angeschaltet sind, oder ob der Wecker aktiv ist, befindeen sich am Ende der ersten Zeile des Displays die Zeichen"`Li"'.
+Das Licht kann nur aus dem Hauptbildschirm aus eingeschaltet und abgeschaltet werden.
 
 \subsection{Lampenstärke ändern}
+Es ist Möglich einzustellen, wieviele Lampen leuchten.
+Die ist über den Menüpunkt 9 zu erreichen.
+Dazu öffnet man das Hauptmenü mit der "`Menütaste"' und navigiert mit der "`Positionstaste"' zum Punkt 9 Lamepnstärke.
+Hier kann jetzt die Zahl mithilfe der "`+Taste"' um eins erhöht werden und anschließend weiter im Menü navigiert werden, da dieses nicht verlassen wird.\\
+Es besteht die Möglichkeit die Follgende Anzahl an Lichtern zu schalten.
+Eine 1 bedeutet, dass nur die oberen 4 Lichter leuchten.
+Eine 2 bedeutet, dass die oberen 4 und die unteren drei roten Licihter leuchten.
+Eine 3 wiederum bedeutet, dass alle lichter Leuchten.
+
+\subsection{Temperaturoffset einstellen}
+Die angezeigte Temperatur in \si{\celsius} ist bereits geeicht und linear.
+Das bedeutet, dass die angezeigte Temperatur mit einem Fehler von $\pm1\si{\celsius}$ genau ist.
+Die angezeigte Temperatur ist auf die zentel Stelle gerundet, da keine höhere Genauigkeit erreicht werden kann.\\
+Ist die Temperatur doch mal nicht ganz richtig, aufgrund von konstanen Stromschwankungen, oder fahlschen Verbindungen, so kann dies über die Addition eines konstanten Offsets korrigert werden.\\
+Dieser kann über den Menüpunkt 8 eingestellt werden.
+Hierzu wird wieder über die "`Menütaste"' das Hauptmenü geöffnet und mit der "`Positionstaste"' zum Menüpunkt Temperaturoffset navigiert.
+Hier kann jetzt der Offset durch das Betätigen des "`+Tasters"' um eins erhöht werden.
+Anschließend, kann wieder weiter durch das Hauptmenü navigiert werden, da dieses nicht verlassen wird.
+Es ist Möglich einen Offset von bis zu $\pm10\si{celsius}$ einzustellen.
 
 
 \section{Wartungsnaleitung}
 \label{sec:wartungsanleitung}
+Zur Wartung des Gerätes ist, zu beachtet, dass dieser nicht Wasserdicht ist und durch den Kontakt mit Wasser beschädigt werden kann.
+Es ist hin und wieder nötig die LEDs zu entstauben, damit die weiterhin volle Leuchtkraft haben.
+Desweiteren ist darauf zu achten, dass keine Kabel blanke stelle besitzen, oder anfangen sich von der Platine oder den Bauteilen zu lösen.
 
 \section{Garantiehinweise}
 \label{sec:Garantiehinweise}
+Garantie ist ausgeschlossen, allerdings wird das Produkt repariert, sollte es jemals Schaden nehmen.
+Über die Kosten der Reparatur wird von Fall zu Fall neu verhandelt.
+Es ist ebenfalls zu beachten, dass jeder augelieferte Wecker ein Einzelstück ist und Hangefertigt.
 
 \newpage
 %\nocite{*} %sorgt dafuer, dass alles ausgegeben wird
